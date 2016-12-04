@@ -7,13 +7,13 @@
 
 
   <div class="nav-right nav-menu">
-    <a class="nav-item" [routerLink]="['signup']">
+    <a class="nav-item" [routerLink]="['signup']" *ngIf="!isLoggedIn()">
       S'inscrire
     </a>
-    <a class="nav-item" [routerLink]="['signin']">
+    <a class="nav-item" [routerLink]="['signin']" *ngIf="!isLoggedIn()"> 
       Connexion
     </a>
-    <a class="nav-item" (click)="onLogout()">
+    <a class="nav-item" (click)="onLogout()" *ngIf="isLoggedIn()">
       Déconnexion
     </a>
   </div>

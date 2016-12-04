@@ -9,7 +9,6 @@ import { ErrorService } from './errors/error.service';
 import { AuthService } from './auth/auth.service';
 
 import { MessageModule } from './messages/message.module';
-import { AuthModule } from './auth/auth.module';
 
 import { AppComponent } from "./app.component";
 import { AuthenticationComponent } from './auth/authentication.component';

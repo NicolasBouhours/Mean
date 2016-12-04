@@ -20,12 +20,15 @@
                     </p>
                     <label for="password" class="label">Mot de passe</label>
                     <p class="control" >
-                        <input type="text" id="password" class="input" formControlName="password">
+                        <input type="password" id="password" class="input" formControlName="password">
                     </p>
                     <label for="confirmPassword" class="label">Confirmer le mot de passe</label>
                     <p class="control">
-                        <input type="text" id="lastName" class="input" formControlName="confirmPassword">
+                        <input type="password" id="lastName" class="input" formControlName="confirmPassword">
                     </p>
+                    <div *ngIf="myForm.errors?.mismatchedPasswords">
+                        Veuillez renseigner deux mots de passes identiques
+                    </div>
                     <hr>
                     <div class="columns">
                         <div class="column is-half is-offset-one-quarter">
@@ -39,6 +42,7 @@
                     Déja un compte ? <a [routerLink]="['/signin']">Se connecter</a>
                 </p>
             </form>
+            <button type="submit" class="button is-primary is-fullwidth" (click)="test()">Test</button>
           </div>
         </div>
       </div>

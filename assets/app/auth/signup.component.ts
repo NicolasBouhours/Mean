@@ -22,7 +22,24 @@ export class SignupComponent implements OnInit {
             ]),
             password: new FormControl(null, Validators.required),
             confirmPassword: new FormControl(null, Validators.required),
-        });
+        }, this.confirmPasswordValidator('password', 'confirmPassword'));
+    }
+
+    confirmPasswordValidator(passwordKey: string, confirmPasswordKey: string) {
+        return (group: FormGroup) => {
+            let password = group.controls[passwordKey];
+            let confirmPassword = group.controls[confirmPasswordKey];
+        
+            if (password.value !== confirmPassword.value) {
+              return {
+                mismatchedPasswords: true
+              };
+            }
+          }
+    }
+
+    test() {
+        console.log(this.myForm);
     }
 
     onSubmit() {
