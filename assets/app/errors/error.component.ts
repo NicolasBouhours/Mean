@@ -1,24 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { ErrorService } from './error.service';
+import {Observable} from 'rxjs/Rx';
 import { Error } from './error.model';
 
 @Component({
     selector: 'app-error',
     templateUrl: './error.component.html',
-    styles: [`
-        .backdrop {
-            background-color: rgba(0,0,0,0.6);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-        }
-    `]
+    styleUrls: ['./error.component.css'],
+    animations: [
+        trigger('notification', [
+          state('hidden', style({
+            transform: 'translateX(200px)',
+            opacity: 0,
+            display: 'hidden'
+          })),
+          state('show', style({
+            transform: 'translateX(0px)',
+            opacity: 1,
+            display: 'block'
+          })),
+          transition('hidden <=> show', animate(300)),
+        ]),
+    ]
 })
 export class ErrorComponent implements OnInit {
     error: Error;
-    display = 'none';
+    state = 'hidden';
 
     constructor(private errorService: ErrorService) { }
 
@@ -27,12 +34,19 @@ export class ErrorComponent implements OnInit {
             .subscribe(
             (error: Error) => {
                 this.error = error;
-                this.display = 'block';
+                //this.display = 'block';
+                this.state = 'show';
+
+                let timer = Observable.timer(8000);
+                timer.subscribe(t=> {
+                    this.state = 'hidden';
+                });
             }
         );
+
     }
 
     onErrorHandled() {
-        this.display = 'none';
+        this.state = 'hidden';
     }
 }

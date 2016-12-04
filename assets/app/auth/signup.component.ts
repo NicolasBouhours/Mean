@@ -38,10 +38,6 @@ export class SignupComponent implements OnInit {
           }
     }
 
-    test() {
-        console.log(this.myForm);
-    }
-
     onSubmit() {
         const user = new User(
             this.myForm.value.email,
