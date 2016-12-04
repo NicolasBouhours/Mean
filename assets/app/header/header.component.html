@@ -7,10 +7,10 @@
 
 
   <div class="nav-right nav-menu">
-    <a class="nav-item" [routerLink]="['signup']" *ngIf="!isLoggedIn()">
+    <a class="nav-item" [routerLink]="['/auth', 'signup']" *ngIf="!isLoggedIn()">
       S'inscrire
     </a>
-    <a class="nav-item" [routerLink]="['signin']" *ngIf="!isLoggedIn()"> 
+    <a class="nav-item" [routerLink]="['/auth','signin']" *ngIf="!isLoggedIn()"> 
       Connexion
     </a>
     <a class="nav-item" (click)="onLogout()" *ngIf="isLoggedIn()">

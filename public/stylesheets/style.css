@@ -2,3 +2,7 @@ html {
   background-color: white;
   overflow: hidden;
 }
+
+#meanCover {
+  background-image: url("/images/meancover.jpg");
+}

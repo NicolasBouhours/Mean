@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ErrorService } from './../errors/error.service';
+import { NotificationService } from './../notification/notification.service';
 import { AuthService } from './auth.service';
 import { User } from './user.models';
 
@@ -10,7 +13,10 @@ import { User } from './user.models';
 export class SignupComponent implements OnInit {
     myForm: FormGroup;
 
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, 
+                private errorService: ErrorService, 
+                private notificationService: NotificationService,
+                private router: Router) {}
 
     ngOnInit() {
         this.myForm = new FormGroup({
@@ -47,8 +53,13 @@ export class SignupComponent implements OnInit {
         );
         this.authService.signup(user)
             .subscribe(
-                data => console.log(data),
-                error => console.log(error)
+                (data) => {
+                    this.notificationService.handleNotification(data.message, true);
+                    this.router.navigate(['/auth', 'signin']);
+                },
+                (error) => {
+                   this.errorService.handleError(error);
+                }
             );
         this.myForm.reset();
     }

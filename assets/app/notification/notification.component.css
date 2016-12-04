@@ -1,0 +1,11 @@
+#notification-success {
+    position: fixed;
+    z-index: 9999;
+    right: 20px;
+    top: 70px;
+
+}
+
+#notification-success .notification-title {
+    font-weight: bold;
+}

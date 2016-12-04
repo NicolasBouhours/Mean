@@ -5,35 +5,36 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { routing } from './app.routing';
 
+import { NotificationService } from './notification/notification.service';
 import { ErrorService } from './errors/error.service';
 import { AuthService } from './auth/auth.service';
 
+import { CoreModule } from './core/core.module';
 import { MessageModule } from './messages/message.module';
 
 import { AppComponent } from "./app.component";
-import { AuthenticationComponent } from './auth/authentication.component';
-import { HeaderComponent } from './header.component';
+import { HeaderComponent } from './header/header.component';
 import { ErrorComponent } from './errors/error.component';
-import { SignupComponent } from './auth/signup.component';
-import { SigninComponent } from './auth/signin.component';
+import { NotificationComponent } from './notification/notification.component';
+import { AuthenticationComponent } from './auth/authentication.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        AuthenticationComponent,
         HeaderComponent,
         ErrorComponent,
-        SignupComponent,
-        SigninComponent
+        NotificationComponent,
+        AuthenticationComponent
     ],
     imports: [
         BrowserModule, 
         routing, 
         ReactiveFormsModule,
         HttpModule,
-        MessageModule
+        MessageModule,
+        CoreModule
     ],
-    providers: [AuthService, ErrorService],
+    providers: [AuthService, ErrorService, NotificationService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,15 +1,16 @@
+import { HomeComponent } from './core/home/home.component';
+import { AuthenticationComponent } from './auth/authentication.component';
+import { SigninComponent } from './auth/signin.component';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthenticationComponent } from './auth/authentication.component';
 import { MessagesComponent } from './messages/messages.component';
-import { SignupComponent } from './auth/signup.component';
-import { SigninComponent } from './auth/signin.component';
+
 
 const APP_ROUTES: Routes = [
-    { path: '', redirectTo: '/messages', pathMatch: 'full' },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
     { path: 'messages', component: MessagesComponent },
-    { path: 'signin', component: SigninComponent },
-    { path: 'signup', component: SignupComponent}
+    { path: 'auth', component: AuthenticationComponent, loadChildren: './auth/auth.module#AuthModule' }
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
