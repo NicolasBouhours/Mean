@@ -22,6 +22,9 @@
                     <p class="control" >
                         <input type="password" id="password" class="input" formControlName="password">
                     </p>
+                    <div *ngIf="myForm.controls.password.errors?.minlength">
+                        Veuillez renseigner un mot de passe d'au minimum 8 caractères
+                    </div>
                     <label for="confirmPassword" class="label">Confirmer le mot de passe</label>
                     <p class="control">
                         <input type="password" id="lastName" class="input" formControlName="confirmPassword">
@@ -42,7 +45,7 @@
                     Déja un compte ? <a [routerLink]="['/signin']">Se connecter</a>
                 </p>
             </form>
-            <button type="submit" class="button is-primary is-fullwidth" (click)="test()">Test</button>
+            <button (click)="test()">test</button>
           </div>
         </div>
       </div>

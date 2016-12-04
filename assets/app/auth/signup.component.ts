@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
                 Validators.required,
                 Validators.pattern('^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$')
             ]),
-            password: new FormControl(null, Validators.required),
+            password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
             confirmPassword: new FormControl(null, Validators.required),
         }, this.confirmPasswordValidator('password', 'confirmPassword'));
     }
@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
             let password = group.controls[passwordKey];
             let confirmPassword = group.controls[confirmPasswordKey];
         
-            if (password.value !== confirmPassword.value) {
+            if ((confirmPassword.value != undefined && confirmPassword.value.length > 0) && password.value !== confirmPassword.value) {
               return {
                 mismatchedPasswords: true
               };
