@@ -1,13 +1,38 @@
-<div class="col-md-8 col-md-offset-2">
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="email">Mail</label>
-            <input type="text" id="email" class="form-control" formControlName="email">
+<section class="hero is-ligth is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column is-4 is-offset-4">
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <h1 class="title">Connexion</h1>
+                <div class="box">
+                    <label class="label">Email</label>
+                    <p class="control">
+                        <input type="text" id="email" class="input" formControlName="email">
+                    </p>
+                    <label class="label">Mot de passe</label>
+                    <p class="control">
+                        <input type="text" id="password" class="input" formControlName="password">
+                    </p>
+                    <hr>
+                    <div class="columns">
+                        <div class="column is-half is-offset-one-quarter">
+                            <p class="control">
+                                <button type="submit" class="button is-primary is-fullwidth" [disabled]="!myForm.valid">Se connecter</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p class="has-text-centered">
+                    <a [routerLink]="['signup']">Créer un Compte</a>
+                    | 
+                    <a href="#">Mot de passe perdu</a>
+                    | 
+                    <a href="#">Besoin d'aide?</a>
+                </p>
+            </form>
+          </div>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="text" id="password" class="form-control" formControlName="password">
-        </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
-    </form>
-</div>
+      </div>
+    </div>
+  </section>
