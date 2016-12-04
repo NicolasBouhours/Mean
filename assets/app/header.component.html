@@ -13,8 +13,8 @@
     <a class="nav-item" [routerLink]="['signin']">
       Connexion
     </a>
-    <a class="nav-item" [routerLink]="['logout']">
-      Déconnection
+    <a class="nav-item" (click)="onLogout()">
+      Déconnexion
     </a>
   </div>
 </nav>

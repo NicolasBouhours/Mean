@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './auth/auth.service';
 
 @Component({
     selector: 'app-header',
-    /*template: `
-        <header class="row">
-            <nav class="col-md-8 col-md-offset-2">
-                <ul class="nav nav-pills">
-                    <li routerLinkActive="active"><a [routerLink]="['/messages']">Messenger</a></li>    
-                    <li routerLinkActive="active"><a [routerLink]="['/auth']">Authentication</a></li>  
-                </ul>
-            </nav>
-        </header>  
-    `*/
-    templateUrl: '/header.component.html'
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, private router: Router) { }
 
     isLoggedIn() {
         return this.authService.isLoggedIn();
+    }
+
+    onLogout() {
+        this.authService.logout();
+        this.router.navigate(['/signin']);
     }
 }
