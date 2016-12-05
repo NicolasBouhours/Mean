@@ -2,7 +2,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './core/home/home.component';
 import { AuthenticationComponent } from './auth/authentication.component';
-import { SigninComponent } from './auth/signin.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ProfileContainerComponent } from './profile/profile-container.component';
 

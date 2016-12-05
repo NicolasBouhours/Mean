@@ -4,8 +4,8 @@ import { SharedModule } from './../shared/shared.module';
 
 import { authRouting } from './auth.routing';
 
-import { SigninComponent } from './signin.component';
-import { SignupComponent } from './signup.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
     declarations: [
