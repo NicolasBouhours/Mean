@@ -1,4 +1,4 @@
 <div id="notification-success" class="notification" [ngClass]="{'is-primary': type, 'is-info': !type}" [@notification]="state">
-    <button class="delete" (click)="onSuccessHandled()"></button>
+    <button class="delete" (click)="onNotificationHandled()"></button>
     <span class="notification-message">{{ notification?.message }}</span>
 </div>
