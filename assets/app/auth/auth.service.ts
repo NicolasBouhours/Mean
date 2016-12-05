@@ -10,6 +10,16 @@ export class AuthService {
 
     constructor(private http: Http, private errorService: ErrorService) { }
 
+    info() {
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this.http.get('http://localhost:3000/user/profile' + token)
+            .map((response: Response) => response.json())
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json());
+            });
+    }
+
     signup(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});

@@ -57,6 +57,27 @@ router.post('/signin', (req, res, next) => {
     });
 });
 
+router.get('/profile', (req, res, next) => {
+    let decoded = jwt.decode(req.query.token);
+    User.findOne({_id: decoded.user._id}, {email: 0, password: 0},  (err, user) => {
+        if (err) {
+            return res.status(500).json({
+                title: 'Une erreur est survenue',
+                error: err
+            });
+        }
+        if(!user) {
+            return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'Impossible de récupèrer les informations utilisateur'}
+            });
+        }
 
+        res.status(200).json({
+            message: 'Informations récupèrées avec succès',
+            obj: user
+        });
+    });
+});
 
 module.exports = router;
