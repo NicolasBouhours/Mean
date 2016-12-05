@@ -7,7 +7,8 @@ import { AuthService } from './../auth/auth.service';
 
 @Component({
     selector: 'app-profile-password',
-    templateUrl: './profile-password.component.html'
+    templateUrl: './profile-password.component.html',
+    styleUrls: ['./profile-password.component.css']
 })
 export class ProfilePasswordComponent {
     myForm: FormGroup;

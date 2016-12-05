@@ -1,26 +1,33 @@
 <div class="container">
   <div class="columns is-vcentered">
-    <div class="column is-6 is-offset-3">
-      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-          <label for="firstName" class="label">Prénom</label>
-          <p class="control has-icon">
-              <input type="text" id="firstName" class="input" formControlName="firstName" placeholder="Prénom">
-              <i class="signup-icon fa fa-user-circle-o"></i>
-          </p>
-          <label for="lastName" class="label">Nom</label>
-          <p class="control has-icon">
-              <input type="text" id="lastName" class="input" formControlName="lastName" placeholder="Nom">
-              <i class="signup-icon fa fa-user-circle"></i>
-          </p>
-          <hr>
-          <div class="columns">
-              <div class="column is-half is-offset-one-quarter">
-                  <p class="control">
-                      <button type="submit" class="button is-primary is-fullwidth" [disabled]="!myForm.valid">Mettre à jour</button>
-                  </p>
-              </div>
-          </div>
-      </form>
+      <div class="column is-8 is-offset-2">
+            <h1 class="title">Compte</h1>
+            <h2 class="subtitle">Modifier vos informations personnelles</h2>
+      </div>
     </div>
-  </div>
+    <hr>
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <label for="firstName" class="label">Prénom</label>
+            <p class="control has-icon">
+                <input type="text" id="firstName" class="input" formControlName="firstName" placeholder="Prénom">
+                <i class="signup-icon fa fa-user-circle-o"></i>
+            </p>
+            <label for="lastName" class="label">Nom</label>
+            <p class="control has-icon">
+                <input type="text" id="lastName" class="input" formControlName="lastName" placeholder="Nom">
+                <i class="signup-icon fa fa-user-circle"></i>
+            </p>
+        </form>
+        </div>
+    </div>
+    <hr>
+    <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+            <p class="control">
+                <button type="submit" class="button is-primary is-fullwidth" [disabled]="!myForm.valid">Mettre à jour</button>
+            </p>
+        </div>
+    </div>
 </div>

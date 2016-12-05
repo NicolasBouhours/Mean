@@ -7,7 +7,8 @@ import { AuthService } from './../auth/auth.service';
 
 @Component({
     selector: 'app-profile-info',
-    templateUrl: './profile-info.component.html'
+    templateUrl: './profile-info.component.html',
+    styleUrls: ['./profile-info.component.css']
 })
 export class ProfileInfoComponent {
    
