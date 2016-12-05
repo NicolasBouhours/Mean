@@ -2,10 +2,12 @@
   <div class="columns is-vcentered">
     <div class="column is-6 is-offset-3">
       <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <label for="firstName" class="label">Prénom</label>
           <p class="control has-icon">
               <input type="text" id="firstName" class="input" formControlName="firstName" placeholder="Prénom">
               <i class="signup-icon fa fa-user-circle-o"></i>
           </p>
+          <label for="lastName" class="label">Nom</label>
           <p class="control has-icon">
               <input type="text" id="lastName" class="input" formControlName="lastName" placeholder="Nom">
               <i class="signup-icon fa fa-user-circle"></i>

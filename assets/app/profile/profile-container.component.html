@@ -1,22 +1,24 @@
-<div id="profile-container" class="container">
-  <div class="tabs is-centered">
-    <ul>
-      <li routerLinkActive="is-active">
-        <a [routerLink]="['/profile', 'info']">
-          <span class="icon is-small"><i class="fa fa-user-circle"></i></span>
-          <span>Informations personnelles</span>
-        </a>
-      </li>
-      <li routerLinkActive="is-active">
-        <a [routerLink]="['/profile', 'password']">
-          <span class="icon is-small"><i class="fa fa-unlock-alt"></i></span>
-          <span>Mot de passe</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+<div class="page-container">
+  <div id="profile-container" class="container">
+    <div class="columns">
+      <div class="profile-routing column is-narrow is-4">
+        <ul>
+          <li routerLinkActive="is-active">
+            <a [routerLink]="['/profile', 'info']">
+              <span>Informations personnelles</span>
+            </a>
+          </li>
+          <li routerLinkActive="is-active">
+            <a [routerLink]="['/profile', 'password']">
+              <span>Mot de passe</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-  <div>
-    <router-outlet></router-outlet>
+      <div class="column is-8 is-narrow profile-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 </div>
