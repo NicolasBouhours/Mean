@@ -3,7 +3,19 @@ html {
   overflow: hidden;
 }
 
+html, body {
+  height: 100%;
+}
+
+#page-container {
+  height: calc(100% - 50px);
+}
+
+.page-container {
+  height: 100%;
+}
+
 .vertical-center {
-  margin-top: calc(40vh + 50px);
+  top: 50%;
   transform: translateY(-50%);
 }

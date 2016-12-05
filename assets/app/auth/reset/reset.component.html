@@ -1,35 +1,36 @@
-<div class="container vertical-center">
-    <div class="columns is-vcentered">
-        <div class="column is-6 is-offset-3 has-text-centered">
-            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-                <h3 id="reset-title" class="title is-3 ">Réinitialiser votre mot de passe ?</h3>
-                <span class="icon is-large">
-                    <i class="fa fa-heart"></i>
-                </span>
-                <h5 id="reset-subtitle" class="subtitle is-5">Vous allez désormais pouvoir choisir un nouveau mot de passe</h5>
-                <p class="control has-icon" >
-                    <input type="password" id="newPassword" class="input" formControlName="newPassword" placeholder="Nouveau mot de passe">
-                    <i class="signin-icon fa fa-lock"></i>
-                </p>
-                <div *ngIf="myForm.controls.newPassword.errors?.minlength">
-                    Veuillez renseigner un mot de passe d'au minimum 8 caractères
-                </div>
-                <p class="control has-icon">
-                    <input type="password" id="newConfirmPassword" class="input" formControlName="newConfirmPassword" placeholder="Confirmer votre nouveau mot de passe">
-                    <i class="signin-icon fa fa-lock"></i>
-                </p>
-                <div *ngIf="myForm.errors?.mismatchedPasswords">
-                    Veuillez renseigner deux mots de passes identiques
-                </div>
-                <div id="reset-button-container" class="columns">
-                    <div class="column is-half is-offset-one-quarter">
-                        <p class="control">
-                            <button type="submit" class="button id-medium is-primary is-fullwidth" [disabled]="!myForm.valid">Changer mon mot de passe</button>
-                        </p>
+<div class="page-container">
+    <div class="container vertical-center">
+        <div class="columns is-vcentered">
+            <div class="column is-6 is-offset-3 has-text-centered">
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                    <h3 id="reset-title" class="title is-3 ">Réinitialiser votre mot de passe ?</h3>
+                    <span class="icon is-large">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    <h5 id="reset-subtitle" class="subtitle is-5">Vous allez désormais pouvoir choisir un nouveau mot de passe</h5>
+                    <p class="control has-icon" >
+                        <input type="password" id="newPassword" class="input" formControlName="newPassword" placeholder="Nouveau mot de passe">
+                        <i class="signin-icon fa fa-lock"></i>
+                    </p>
+                    <div *ngIf="myForm.controls.newPassword.errors?.minlength">
+                        Veuillez renseigner un mot de passe d'au minimum 8 caractères
                     </div>
-                </div>
-            </form>
+                    <p class="control has-icon">
+                        <input type="password" id="newConfirmPassword" class="input" formControlName="newConfirmPassword" placeholder="Confirmer votre nouveau mot de passe">
+                        <i class="signin-icon fa fa-lock"></i>
+                    </p>
+                    <div *ngIf="myForm.errors?.mismatchedPasswords">
+                        Veuillez renseigner deux mots de passes identiques
+                    </div>
+                    <div id="reset-button-container" class="columns">
+                        <div class="column is-half is-offset-one-quarter">
+                            <p class="control">
+                                <button type="submit" class="button id-medium is-primary is-fullwidth" [disabled]="!myForm.valid">Changer mon mot de passe</button>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-

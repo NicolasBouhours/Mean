@@ -1,44 +1,45 @@
-<div id="signin-container" class="container vertical-center">
-    <div class="columns is-vcentered">
-        <div class="column is-8 is-offset-2">
-            <div class="columns box">
-                <div class="column is-5 has-text-centered">
-                    <div id="signin-img-container">
-                        <img id="login-image" src="../../../img/login.png" alt="login">
-                    </div>
-                </div>
-                <div class="column is-7">
-                    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-                        <div class="box has-text-centered">
-                            <h3 class="subtitle is-3 has-text-centered">Connexion</h3>
-                            <p class="control has-icon">
-                                <input type="text" id="email" class="input is-medium" formControlName="email" placeholder="Email">
-                                <i class="signin-icon fa fa-envelope"></i>
-                            </p>
-                            <p class="control has-icon">
-                                <input type="password" id="password" class="input is-medium" formControlName="password" placeholder="Mot de passe">
-                                <i class="signin-icon fa fa-lock"></i>
-                            </p>
-                            <hr>
-                            <div class="columns">
-                                <div class="column is-half is-offset-one-quarter">
-                                    <p class="control">
-                                        <button type="submit" class="button is-medium is-primary is-fullwidth" [disabled]="!myForm.valid">Se connecter</button>
-                                    </p>
-                                </div>
-                            </div>
-                            <p class="has-text-centered">
-                                <a [routerLink]="['/auth', 'signup']">Créer un Compte</a>
-                                | 
-                                <a [routerLink]="['/auth', 'forgot']">Mot de passe perdu</a>
-                                | 
-                                <a href="#">Besoin d'aide?</a>
-                            </p>
+  <div class="page-container">  
+    <div id="signin-container" class="container vertical-center">
+        <div class="columns is-vcentered">
+            <div class="column is-8 is-offset-2">
+                <div class="columns box">
+                    <div class="column is-5 has-text-centered">
+                        <div id="signin-img-container">
+                            <img id="login-image" src="../../../img/login.png" alt="login">
                         </div>
-                    </form>
+                    </div>
+                    <div class="column is-7">
+                        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                            <div class="box has-text-centered">
+                                <h3 class="subtitle is-3 has-text-centered">Connexion</h3>
+                                <p class="control has-icon">
+                                    <input type="text" id="email" class="input is-medium" formControlName="email" placeholder="Email">
+                                    <i class="signin-icon fa fa-envelope"></i>
+                                </p>
+                                <p class="control has-icon">
+                                    <input type="password" id="password" class="input is-medium" formControlName="password" placeholder="Mot de passe">
+                                    <i class="signin-icon fa fa-lock"></i>
+                                </p>
+                                <hr>
+                                <div class="columns">
+                                    <div class="column is-half is-offset-one-quarter">
+                                        <p class="control">
+                                            <button type="submit" class="button is-medium is-primary is-fullwidth" [disabled]="!myForm.valid">Se connecter</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="has-text-centered">
+                                    <a [routerLink]="['/auth', 'signup']">Créer un Compte</a>
+                                    | 
+                                    <a [routerLink]="['/auth', 'forgot']">Mot de passe perdu</a>
+                                    | 
+                                    <a href="#">Besoin d'aide?</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
