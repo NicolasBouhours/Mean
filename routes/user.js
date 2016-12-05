@@ -2,6 +2,8 @@ let express = require('express');
 let router = express.Router();
 let bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
+let crypto = require('crypto');
+let nodemailer = require('nodemailer');
 
 let User = require('../models/user');
 
@@ -10,7 +12,7 @@ router.post('/', (req, res, next) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         password: bcrypt.hashSync(req.body.password, 10),
-        email: req.body.email
+        email: req.body.email,
     });
 
     user.save((err, result) => {
@@ -156,6 +158,109 @@ router.patch('/', (req, res, next) => {
 
             res.status(200).json({
                 message: 'Utilisateur mis a jour avec succès'
+            });
+        });
+    });
+});
+
+router.post('/forgot', (req, res, next) => {
+    User.findOne({email: req.body.email}, (err, user) => {
+        if (err) {
+            return res.status(500).json({
+                title: 'Une erreur est survenue',
+                error: err
+            });
+        }
+
+        if(!user) {
+            return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'Aucun compte avec cet email n\'a été trouvé'}
+            });
+        }
+        
+        crypto.randomBytes(48, function(err, buffer) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'Une erreur est survenue',
+                    error: err
+                });
+            }
+            const token = buffer.toString('hex');
+
+            user.resetPasswordToken = token;
+            user.resetPasswordExpires = Date.now() + 3600000; 
+
+            user.save(function(err, savedUser) {
+                if (err) {
+                    return res.status(500).json({
+                        title: 'Une erreur est survenue',
+                        error: err
+                    });
+                }
+
+                // on envoie un email
+                console.log('send email', savedUser);
+                let transporter = nodemailer.createTransport('smtps://nicolas.bouhours5396@gmail.com:nicodu5396@smtp.gmail.com');
+
+                let mailOptions = {
+                    from: '"Mean Stack" <nicolas.bouhours5396@gmail.com>', // sender address
+                    to: 'nico53960@hotmail.fr, nicolas.bouhours5396@gmail.com', // list of receivers
+                    subject: 'Mean : Réintialisation de mot de passe', // Subject line
+                    /*text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                            'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                            'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                            'If you did not request this, please ignore this email and your password will remain unchanged.\n'*/
+                    html: '<html><head><link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><style>html{text-align: center} .btn{color:#00d1b2;text-decoration:none}</style></head>' + 
+                    '<h3> Bonjour ' + user.firstName + ' ' + user.lastName + '</h3>' +
+                    '<p>Vous avez récemment fait une demande de réinitialisation de mot de passe.</p><p>Merci de cliquer sur le lien ci-dessous pour choisir votre nouveau mot de passe</p>' +
+                    '<a class="btn" href="http://'+ req.headers.host +'/auth/reset/' + token +'">Réinitiliser mon mot de passe</a></html>'
+                };
+
+                transporter.sendMail(mailOptions, function(error, info){
+                    if(error){
+                        return res.status(500).json({
+                            title: 'Erreur',
+                            error: {message: 'Impossible d\'envoyer l\'email de récupération de mot de passe'}
+                        });
+                    }
+                    res.status(200).json({
+                        message: 'Email de réinitialisation envoyé'
+                    });
+                });
+            });
+        });
+    });
+});
+
+router.post('/reset', (req, res, next) => {
+    User.findOne({_token: req.body.resetPasswordToken, resetPasswordExpires: { $gt: Date.now() }}, (err, user) => {
+        if (err) {
+            return res.status(500).json({
+                title: 'Une erreur est survenue',
+                error: err
+            });
+        }
+
+        if(!user) {
+            return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'La demande de mot de passe est trop ancienne(plus de deux heures), veuillez recommencer'}
+            });
+        }
+        
+        user.password = bcrypt.hashSync(req.body.password, 10);
+
+        user.save((err, savedUser) => {
+            if (err) {
+                return res.status(500).json({
+                    title: 'Une erreur est survenue',
+                    error: err
+                });
+            }
+
+            res.status(200).json({
+                message: 'Mot de passe réinitialiser avec succès'
             });
         });
     });

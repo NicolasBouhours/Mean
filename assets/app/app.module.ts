@@ -5,17 +5,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { routing } from './app.routing';
 
-import { NotificationService } from './notification/notification.service';
-import { ErrorService } from './errors/error.service';
+import { NotificationService } from './shared/notification/notification.service';
+import { ErrorService } from './shared/errors/error.service';
 import { AuthService } from './auth/auth.service';
 
 import { CoreModule } from './core/core.module';
 import { MessageModule } from './messages/message.module';
 
 import { AppComponent } from "./app.component";
-import { HeaderComponent } from './header/header.component';
-import { ErrorComponent } from './errors/error.component';
-import { NotificationComponent } from './notification/notification.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { ErrorComponent } from './shared/errors/error.component';
+import { NotificationComponent } from './shared/notification/notification.component';
 import { AuthenticationComponent } from './auth/authentication.component';
 import { ProfileContainerComponent } from './profile/profile-container.component';
 

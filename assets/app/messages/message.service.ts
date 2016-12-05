@@ -3,7 +3,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 
-import { ErrorService } from './../errors/error.service';
+import { ErrorService } from './../shared/errors/error.service';
 
 import { Message } from './message.models';
 

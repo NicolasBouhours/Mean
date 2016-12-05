@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { User } from './../user.models';
 import { AuthService } from '../auth.service';
+import { ErrorService } from './../../shared/errors/error.service';
+import { NotificationService } from './../../shared/notification/notification.service';
 
 @Component({
     selector: 'app-forgot',
@@ -12,7 +13,10 @@ import { AuthService } from '../auth.service';
 export class ForgotComponent {
     myForm: FormGroup;
 
-    constructor(private authService: AuthService, private router : Router) { }
+    constructor(
+        private authService: AuthService, 
+        private errorService: ErrorService, 
+        private notificationService: NotificationService) { }
 
     ngOnInit() {
         this.myForm = new FormGroup({
@@ -25,14 +29,12 @@ export class ForgotComponent {
 
     onSubmit() {
         const user = new User(this.myForm.value.email, '');
-        this.authService.signin(user)
+        this.authService.forgot(user)
             .subscribe(
                 data => {
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('userId', data.userId);
-                    this.router.navigateByUrl('/');
+                    this.notificationService.handleNotification(data.message, true);
                 },
-                error => console.log(error)
+                error => this.errorService.handleError(error)
         );
 
         this.myForm.reset();

@@ -1,0 +1,11 @@
+#reset-title, #reset-subtitle {
+  margin: 30px;
+}
+
+.icon .fa-heart {
+  color: #ff3860;
+}
+
+#reset-button-container {
+  margin-top: 30px;
+}

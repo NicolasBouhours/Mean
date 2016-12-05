@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ErrorService } from '../../errors/error.service';
-import { NotificationService } from '../../notification/notification.service';
+import { ErrorService } from '../../shared/errors/error.service';
+import { NotificationService } from '../../shared/notification/notification.service';
 import { AuthService } from '../auth.service';
 import { User } from '../user.models';
 

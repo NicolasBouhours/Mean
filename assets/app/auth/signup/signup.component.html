@@ -1,66 +1,62 @@
-<section class="hero is-ligth is-bold">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-vcentered">
-          <div class="column is-8 is-offset-2">
-             <div class="columns box">
-                <div class="column is-5 has-text-centered">
-                    <div id="signup-img-container" class="has-text-centered">
-                        <img id="signup-image" src="../../../img/register.png" alt="register">
-                    </div>
+<div id="signup-container" class="container vertical-center">
+    <div class="columns is-vcentered">
+        <div class="column is-8 is-offset-2">
+            <div class="columns box">
+            <div class="column is-5 has-text-centered">
+                <div id="signup-img-container" class="has-text-centered">
+                    <img id="signup-image" src="../../../img/register.png" alt="register">
                 </div>
-                <div class="column is-7">
-                    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-                        <div class="box has-text-centered">
-                            <h3 class="subtitle is-3 has-text-centered">Inscription</h3>
-                            <p class="control has-icon">
-                                <input type="text" id="firstName" class="input is-medium" 
-                                    formControlName="firstName" placeholder="Prénom">
-                                    <i class="signup-icon fa fa-user-circle-o"></i>
-                            </p>
-                            <p class="control has-icon">
-                                <input type="text" id="lastName" class="input is-medium" 
-                                    formControlName="lastName" placeholder="Nom">
-                                    <i class="signup-icon fa fa-user-circle"></i>
-                            </p>
-                            <p class="control has-icon">
-                                <input type="text" id="email" class="input is-medium" 
-                                    formControlName="email" placeholder="Email">
-                                <i class="signup-icon fa fa-envelope"></i>
-                            </p>
-                            <p class="control has-icon" >
-                                <input type="password" id="password" class="input is-medium" 
-                                    formControlName="password" placeholder="Mot de passe">
-                                <i class="signup-icon fa fa-lock"></i>
-                            </p>
-                            <div *ngIf="myForm.controls.password.errors?.minlength">
-                                Veuillez renseigner un mot de passe d'au minimum 8 caractères
-                            </div>
-                            <p class="control has-icon">
-                                <input type="password" id="lastName" class="input is-medium" 
-                                    formControlName="confirmPassword" placeholder="Confirmer le mot de passe">
-                                <i class="signup-icon fa fa-lock"></i>
-                            </p>
-                            <div *ngIf="myForm.errors?.mismatchedPasswords">
-                                Veuillez renseigner deux mots de passes identiques
-                            </div>
-                            <hr>
-                            <div class="columns">
-                                <div class="column is-half is-offset-one-quarter">
-                                    <p class="control">
-                                        <button type="submit" class="button is-medium is-primary is-fullwidth" [disabled]="!myForm.valid">S'inscrire</button>
-                                    </p>
-                                </div>
+            </div>
+            <div class="column is-7">
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                    <div class="box has-text-centered">
+                        <h3 class="subtitle is-3 has-text-centered">Inscription</h3>
+                        <p class="control has-icon">
+                            <input type="text" id="firstName" class="input is-medium" 
+                                formControlName="firstName" placeholder="Prénom">
+                                <i class="signup-icon fa fa-user-circle-o"></i>
+                        </p>
+                        <p class="control has-icon">
+                            <input type="text" id="lastName" class="input is-medium" 
+                                formControlName="lastName" placeholder="Nom">
+                                <i class="signup-icon fa fa-user-circle"></i>
+                        </p>
+                        <p class="control has-icon">
+                            <input type="text" id="email" class="input is-medium" 
+                                formControlName="email" placeholder="Email">
+                            <i class="signup-icon fa fa-envelope"></i>
+                        </p>
+                        <p class="control has-icon" >
+                            <input type="password" id="password" class="input is-medium" 
+                                formControlName="password" placeholder="Mot de passe">
+                            <i class="signup-icon fa fa-lock"></i>
+                        </p>
+                        <div *ngIf="myForm.controls.password.errors?.minlength">
+                            Veuillez renseigner un mot de passe d'au minimum 8 caractères
+                        </div>
+                        <p class="control has-icon">
+                            <input type="password" id="lastName" class="input is-medium" 
+                                formControlName="confirmPassword" placeholder="Confirmer le mot de passe">
+                            <i class="signup-icon fa fa-lock"></i>
+                        </p>
+                        <div *ngIf="myForm.errors?.mismatchedPasswords">
+                            Veuillez renseigner deux mots de passes identiques
+                        </div>
+                        <hr>
+                        <div class="columns">
+                            <div class="column is-half is-offset-one-quarter">
+                                <p class="control">
+                                    <button type="submit" class="button is-medium is-primary is-fullwidth" [disabled]="!myForm.valid">S'inscrire</button>
+                                </p>
                             </div>
                         </div>
-                        <p class="has-text-centered">
-                            Déja un compte ? <a [routerLink]="['/signin']">Se connecter</a>
-                        </p>
-                    </form>
-                </div>
-             </div>
-          </div>
+                    </div>
+                    <p class="has-text-centered">
+                        Déja un compte ? <a [routerLink]="['/signin']">Se connecter</a>
+                    </p>
+                </form>
+            </div>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</div>
