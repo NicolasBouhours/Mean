@@ -1,15 +1,15 @@
-#signin-img-container {
-  width: 130px;
-  height: 100%;
+.signup-icon {
+  color: #dbdbdb;
 }
 
-#login-image {
+#signup-img-container {
+  height: 100%;
+  width: 150px;
+}
+
+#signup-image {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   width: 130px;
-}
-
-.signin-icon {
-  color: #dbdbdb;
 }
