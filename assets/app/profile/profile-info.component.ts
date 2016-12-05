@@ -18,7 +18,6 @@ export class ProfileInfoComponent {
                 private notificationService: NotificationService) {}
 
     ngOnInit() {
-
         this.myForm = new FormGroup({
             firstName: new FormControl(null, Validators.required),
             lastName: new FormControl(null, Validators.required)

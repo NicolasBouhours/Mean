@@ -80,6 +80,53 @@ router.get('/profile', (req, res, next) => {
     });
 });
 
+router.patch('/password', (req, res, next) => {
+    let decoded = jwt.decode(req.query.token);
+    User.findOne({_id: decoded.user._id}, (err, user) => {
+        if (err) {
+            return res.status(500).json({
+                title: 'Une erreur est survenue',
+                error: err
+            });
+        }
+
+        if(!user) {
+            return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'Impossible de mettre à jour le mot de passe'}
+            });
+        }
+
+        if (!bcrypt.compareSync(req.body.password, user.password)) {
+            return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'Le mot de passe ne correspond pas a l\'actuel mot de passe'}
+            });
+        }
+        
+        if (req.body.newPassword !== req.body.newConfirmPassword) {
+            return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'Les deux mots de passe ne sont pas identiques'}
+            });    
+        }
+
+        user.password = bcrypt.hashSync(req.body.newPassword, 10);
+
+        user.save((error, savedUser) => {
+            if(error) {
+                return res.status(500).json({
+                    title: 'Erreur',
+                    error: {message: 'Impossible de mettre à jour le mot de passe'}
+                });
+            }
+            res.status(200).json({
+                message: 'Mot de passe mis a jour avec succès'
+            });
+        });
+    });
+});
+
 router.patch('/', (req, res, next) => {
     let decoded = jwt.decode(req.query.token);
     User.findOne({_id: decoded.user._id}, {email: 0, password: 0},  (err, user) => {

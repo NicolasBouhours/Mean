@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { ErrorService } from './../errors/error.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
@@ -25,6 +26,22 @@ export class AuthService {
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.patch('http://localhost:3000/user/' + token, body, {headers: headers})
+            .map((response: Response) => response.json())
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json());
+        });
+    }
+
+    updatePassword(password: string, newPassword: string, newConfirmPassword: string) {
+        const body = JSON.stringify({
+            password: password,
+            newPassword: newPassword,
+            newConfirmPassword: newConfirmPassword
+        });
+         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.patch('http://localhost:3000/user/password' + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -60,5 +77,18 @@ export class AuthService {
 
     isLoggedIn() {
         return localStorage.getItem('token') !== null;
+    }
+
+    confirmPasswordValidator(passwordKey: string, confirmPasswordKey: string) {
+        return (group: FormGroup) => {
+            let password = group.controls[passwordKey];
+            let confirmPassword = group.controls[confirmPasswordKey];
+        
+            if ((confirmPassword.value != undefined && confirmPassword.value.length > 0) && password.value !== confirmPassword.value) {
+              return {
+                mismatchedPasswords: true
+              };
+            }
+          }
     }
 }
