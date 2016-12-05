@@ -2,35 +2,42 @@
     <div class="hero-body">
         <div class="container">
             <div class="columns is-vcentered">
-                <div class="column is-6 is-offset-3">
-                    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-                        <h1 class="title">Connexion</h1>
-                        <div class="box">
-                            <label for="email" class="label">Email</label>
-                            <p class="control">
-                                <input type="text" id="email" class="input" formControlName="email">
-                            </p>
-                            <label for="password" class="label">Mot de passe</label>
-                            <p class="control">
-                                <input type="password" id="password" class="input" formControlName="password">
-                            </p>
-                            <hr>
-                            <div class="columns">
-                                <div class="column is-half is-offset-one-quarter">
-                                    <p class="control">
-                                        <button type="submit" class="button is-primary is-fullwidth" [disabled]="!myForm.valid">Se connecter</button>
-                                    </p>
-                                </div>
+                <div class="column is-8 is-offset-2">
+                    <div class="columns box">
+                        <div class="column is-5 has-text-centered">
+                            <div id="signin-img-container">
+                                <img id="login-image" src="../../../img/login.png" alt="login">
                             </div>
                         </div>
-                        <p class="has-text-centered">
-                            <a [routerLink]="['/auth', 'signup']">Créer un Compte</a>
-                            | 
-                            <a [routerLink]="['/auth', 'forgot']">Mot de passe perdu</a>
-                            | 
-                            <a href="#">Besoin d'aide?</a>
-                        </p>
-                    </form>
+                        <div class="column is-7">
+                           <h2 class="subtitle is-3 has-text-centered">Connexion</h2>
+                           <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                                <p class="control has-icon">
+                                    <input type="text" id="email" class="input is-medium" formControlName="email" placeholder="Email">
+                                    <i class="signin-icon fa fa-envelope"></i>
+                                </p>
+                                <p class="control has-icon">
+                                    <input type="password" id="password" class="input is-medium" formControlName="password" placeholder="Mot de passe">
+                                    <i class="signin-icon fa fa-lock"></i>
+                                </p>
+                                <hr>
+                                <div class="columns">
+                                    <div class="column is-half is-offset-one-quarter">
+                                        <p class="control">
+                                            <button type="submit" class="button is-medium is-primary is-fullwidth" [disabled]="!myForm.valid">Se connecter</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="has-text-centered">
+                                    <a [routerLink]="['/auth', 'signup']">Créer un Compte</a>
+                                    | 
+                                    <a [routerLink]="['/auth', 'forgot']">Mot de passe perdu</a>
+                                    | 
+                                    <a href="#">Besoin d'aide?</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

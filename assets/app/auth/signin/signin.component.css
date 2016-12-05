@@ -1,0 +1,19 @@
+#signin-img-container {
+  width: 130px;
+  height: 100%;
+}
+
+#login-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 130px;
+}
+
+.signin-icon {
+  color: #dbdbdb;
+}
+
+#signin-img-container {
+  position: relative;
+}
