@@ -1,8 +1,9 @@
 html {
   background-color: white;
+  overflow: hidden;
 }
 
 .vertical-center {
-  margin-top: 40vh;
+  margin-top: calc(40vh + 50px);
   transform: translateY(-50%);
 }
