@@ -8,6 +8,7 @@ import { routing } from './app.routing';
 import { NotificationService } from './shared/notification/notification.service';
 import { ErrorService } from './shared/errors/error.service';
 import { AuthService } from './auth/auth.service';
+import { CanActivateViaAuthGuard } from './auth/CanActivateViaAuthGuard';
 
 import { CoreModule } from './core/core.module';
 import { MessageModule } from './messages/message.module';
@@ -36,7 +37,7 @@ import { ProfileContainerComponent } from './profile/profile-container.component
         MessageModule,
         CoreModule
     ],
-    providers: [AuthService, ErrorService, NotificationService],
+    providers: [AuthService, ErrorService, NotificationService, CanActivateViaAuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {
