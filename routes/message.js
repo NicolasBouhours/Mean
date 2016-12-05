@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     .exec((err, messages) => {
         if (err) {
             return res.status(500).json({
-                title: 'An error occured',
+                title: 'Une erreur est survenue',
                 error: err
             });
         }
@@ -26,7 +26,7 @@ router.use('/', (req, res, next) => {
     jwt.verify(req.query.token, 'secret', (err, decoded) => {
         if (err) {
             return res.status(401).json({
-                title: 'Not authenticated',
+                title: 'Utilisateur non authentifié',
                 error: err
             });
         }
@@ -39,7 +39,7 @@ router.post('/', (req, res, next) => {
     User.findById(decoded.user._id, (err, user) => {
         if (err) {
             return res.status(500).json({
-                title: 'An error occured',
+                title: 'Une erreur est survenue',
                 error: err
             });
         }
@@ -50,14 +50,14 @@ router.post('/', (req, res, next) => {
         message.save((err, result) => {
             if (err) {
                 return res.status(500).json({
-                    title: 'An error occured',
+                    title: 'Une erreur est survenue',
                     error: err
                 });
             }
             user.messages.push(result);
             user.save();
             res.status(201).json({
-                message: 'Saved message',
+                message: 'Message sauvegardé avec succès',
                 obj: result
             });
         });
@@ -69,32 +69,32 @@ router.patch('/:id', (req, res, next) => {
     Message.findById(req.params.id, (err, message) => {
         if (err) {
             return res.status(500).json({
-                title: 'Not authenticated',
+                title: 'Utilisateur non authentifié',
                 error: err
             });
         }
         if (!message) {
             return res.status(500).json({
-                title: 'Message not found!',
-                error: {message: 'Message not found'}
+                title: 'Erreur',
+                error: {message: 'Message introuvable'}
             });
         }
         if(message.user != decoded.user._id) {
             return res.status(401).json({
-                title: 'Message not found!',
-                error: {message: 'Users do not match'}
+                title: 'Erreur',
+                error: {message: 'Vous n\'êtes pas le propriétaire de celui-ci '}
             });
         }
         message.content = req.body.content;
         message.save((err, result) => {
             if (err) {
                 return res.status(500).json({
-                    title: 'An error occured',
+                    title: 'Une erreur est survenue',
                     error: err
                 });
             }
             res.status(201).json({
-                message: 'Updated message',
+                message: 'Message mis a jou avec succès',
                 obj: result
             });
         });
@@ -106,31 +106,31 @@ router.delete('/:id', (req, res, next) => {
     Message.findById(req.params.id, (err, message) => {
         if (err) {
             return res.status(500).json({
-                title: 'An error occured',
+                title: 'Une erreur est survenue',
                 error: err
             });
         }
         if (!message) {
             return res.status(500).json({
-                title: 'Message not found!',
-                error: {message: 'Message not found'}
+                title: 'Une erreur est survenue',
+                error: {message: 'Message introuvable'}
             });
         }
         if(message.user != decoded.user._id) {
             return res.status(401).json({
-                title: 'Message not found!',
-                error: {message: 'Users do not match'}
+                title: 'Erreur',
+                error: {message: 'Utilisateur non authentifié'}
             });
         }
         message.remove((err, result) => {
             if (err) {
                 return res.status(500).json({
-                    title: 'An error occured',
+                    title: 'Une erreur est survenue',
                     error: err
                 });
             }
             res.status(201).json({
-                message: 'Deleted message',
+                message: 'Message supprimé avec succès',
                 obj: result
             });
         });

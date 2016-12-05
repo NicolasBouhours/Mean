@@ -16,12 +16,12 @@ router.post('/', (req, res, next) => {
     user.save((err, result) => {
         if (err) {
             return res.status(500).json({
-                title: 'An error occured',
+                title: 'Une erreur est survenue',
                 error: err
             });
         }
         res.status(201).json({
-            message: 'User created',
+            message: 'Utilisateur crée avec succès',
             obj: result
         });
     });
@@ -31,26 +31,26 @@ router.post('/signin', (req, res, next) => {
     User.findOne({email: req.body.email}, (err, user) => {
         if (err) {
             return res.status(500).json({
-                title: 'An error occured',
+                title: 'Une erreur est survenue',
                 error: err
             });
         }
 
         if(!user) {
             return res.status(500).json({
-                title: 'Login failed',
-                error: {message: 'Invalid login credentials'}
+                title: 'Echec de la connexion',
+                error: {message: 'Les identifiants sont incorrects'}
             });
         }
         if (!bcrypt.compareSync(req.body.password, user.password)) {
             return res.status(500).json({
-                title: 'Login failed',
-                error: {message: 'Invalid login credentials'}
+                title: 'Echec de la connexion',
+                error: {message: 'Les identifiants sont incorrects'}
             });
         }
         let token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
         res.status(200).json({
-            message: 'Successfully logged in',
+            message: 'Connecté avec succès',
             token: token,
             userId: user._id
         });
