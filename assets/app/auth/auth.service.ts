@@ -17,7 +17,19 @@ export class AuthService {
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
-            });
+        });
+    }
+
+    update(user: User) {
+        const body = JSON.stringify(user);
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.patch('http://localhost:3000/user/' + token, body, {headers: headers})
+            .map((response: Response) => response.json())
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json());
+        });
     }
 
     signup(user: User) {

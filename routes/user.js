@@ -80,4 +80,38 @@ router.get('/profile', (req, res, next) => {
     });
 });
 
+router.patch('/', (req, res, next) => {
+    let decoded = jwt.decode(req.query.token);
+    User.findOne({_id: decoded.user._id}, {email: 0, password: 0},  (err, user) => {
+        if (err) {
+            return res.status(500).json({
+                title: 'Une erreur est survenue',
+                error: err
+            });
+        }
+        if(!user) {
+            return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'Impossible de récupèrer les informations utilisateur'}
+            });
+        }
+
+        user.firstName = req.body.firstName;
+        user.lastName = req. body.lastName;
+
+        user.save((err, savedUser) => {
+            if (err) {
+                return res.status(500).json({
+                    title: 'Une erreur est survenue',
+                    error: err
+                });
+            }
+
+            res.status(200).json({
+                message: 'Utilisateur mis a jour avec succès'
+            });
+        });
+    });
+});
+
 module.exports = router;

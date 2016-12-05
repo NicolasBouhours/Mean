@@ -1,3 +1,4 @@
+import { User } from './../auth/user.models';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ErrorService } from './../errors/error.service';
@@ -25,9 +26,18 @@ export class ProfileInfoComponent {
 
         this.authService.info().subscribe(
           (data) => {
-            console.log('data', data);
             this.myForm.controls['firstName'].setValue(data.obj.firstName);
             this.myForm.controls['lastName'].setValue(data.obj.lastName);
+          }
+        );
+    }
+
+    onSubmit() {
+      const user = new User('', '', this.myForm.value.firstName, this.myForm.value.lastName);
+      this.authService.update(user)
+        .subscribe(
+          (data) => {
+            this.notificationService.handleNotification(data.message, true);
           }
         );
     }
