@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { ErrorComponent } from './errors/error.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AuthenticationComponent } from './auth/authentication.component';
+import { ProfileContainerComponent } from './profile/profile-container.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { AuthenticationComponent } from './auth/authentication.component';
         HeaderComponent,
         ErrorComponent,
         NotificationComponent,
-        AuthenticationComponent
+        AuthenticationComponent,
+        ProfileContainerComponent
     ],
     imports: [
         BrowserModule, 
