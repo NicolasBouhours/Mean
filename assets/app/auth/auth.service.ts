@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
+import { AppSettings } from './../app.settings';
 import { User } from './user.models';
 
 @Injectable()
@@ -13,7 +14,7 @@ export class AuthService {
 
     info() {
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.get('http://localhost:3000/api/user/profile' + token)
+        return this.http.get(`${AppSettings.API_ENDPOINT}user/profile${token}`)
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -25,7 +26,7 @@ export class AuthService {
         const body = JSON.stringify(user);
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.patch('http://localhost:3000/api/user/' + token, body, {headers: headers})
+        return this.http.patch(`${AppSettings.API_ENDPOINT}user${token}`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -41,7 +42,7 @@ export class AuthService {
         });
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.patch('http://localhost:3000/api/user/password' + token, body, {headers: headers})
+        return this.http.patch(`${AppSettings.API_ENDPOINT}user/password${token}`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -52,7 +53,7 @@ export class AuthService {
     signup(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/api/user', body, {headers: headers})
+        return this.http.post(`${AppSettings.API_ENDPOINT}user/password`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -63,7 +64,7 @@ export class AuthService {
     signin(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/api/user/signin', body, {headers: headers})
+        return this.http.post(`${AppSettings.API_ENDPOINT}user/signin`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -74,7 +75,7 @@ export class AuthService {
     forgot(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/api/user/forgot', body, {headers: headers})
+        return this.http.post(`${AppSettings.API_ENDPOINT}user/forgot`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -88,7 +89,7 @@ export class AuthService {
             token: token
         });
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/api/user/reset', body, {headers: headers})
+        return this.http.post(`${AppSettings.API_ENDPOINT}user/reset`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
