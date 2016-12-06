@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './core/home/home.component';
 import { AuthenticationComponent } from './auth/authentication.component';
 import { MessagesComponent } from './messages/messages.component';
-import { ProfileContainerComponent } from './profile/profile-container.component';
+import { ProfileContainerComponent } from './profile/container/profile-container.component';
 import { CanActivateViaAuthGuard } from './auth/CanActivateViaAuthGuard';
 
 

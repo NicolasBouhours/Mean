@@ -1,11 +1,11 @@
 import { Component, OnInit, NgZone  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { ErrorService } from './../shared/errors/error.service';
-import { NotificationService } from './../shared/notification/notification.service';
-import { AuthService } from './../auth/auth.service';
-import { User } from './../auth/user.models';
-import { UploadService } from './../shared/upload/upload.service';
+import { ErrorService } from './../../shared/errors/error.service';
+import { NotificationService } from './../../shared/notification/notification.service';
+import { AuthService } from './../../auth/auth.service';
+import { User } from './../../auth/user.models';
+import { UploadService } from './../../shared/upload/upload.service';
 
 @Component({
     selector: 'app-profile-info',

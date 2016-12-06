@@ -18,7 +18,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { ErrorComponent } from './shared/errors/error.component';
 import { NotificationComponent } from './shared/notification/notification.component';
 import { AuthenticationComponent } from './auth/authentication.component';
-import { ProfileContainerComponent } from './profile/profile-container.component';
+import { ProfileContainerComponent } from './profile/container/profile-container.component';
 
 @NgModule({
     declarations: [
