@@ -12,4 +12,5 @@ hr {
 
 #profile-info-picture-figure img {
     border-radius: 48px;
+    max-height: 64px;
 }

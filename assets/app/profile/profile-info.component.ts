@@ -1,11 +1,11 @@
-import { User } from './../auth/user.models';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 
 import { ErrorService } from './../shared/errors/error.service';
 import { NotificationService } from './../shared/notification/notification.service';
 import { AuthService } from './../auth/auth.service';
+import { User } from './../auth/user.models';
+import { UploadService } from './../shared/upload/upload.service';
 
 @Component({
     selector: 'app-profile-info',
@@ -15,11 +15,13 @@ import { AuthService } from './../auth/auth.service';
 export class ProfileInfoComponent {
    
     myForm: FormGroup;
-    filesToUpload: Array<File>;
+    picture = '';
+
 
     constructor(private authService: AuthService, 
                 private errorService: ErrorService, 
-                private notificationService: NotificationService) {}
+                private notificationService: NotificationService,
+                private uploadService: UploadService) {}
 
     ngOnInit() {
         this.myForm = new FormGroup({
@@ -31,6 +33,7 @@ export class ProfileInfoComponent {
           (data) => {
             this.myForm.controls['firstName'].setValue(data.obj.firstName);
             this.myForm.controls['lastName'].setValue(data.obj.lastName);
+            this.picture = data.obj.picture;
           }
         );
     }
@@ -45,37 +48,21 @@ export class ProfileInfoComponent {
         );
     }
 
-    fileChangeEvent(fileInput: any){
-        this.filesToUpload = <Array<File>> fileInput.target.files[0];
-    }
+    handleUpload(event) {
+        let url = 'http://localhost:3000/api/user/picture';
 
-    upload() {
-        this.makeFileRequest("http://localhost:3000/api/user/picture", [], this.filesToUpload).then((result) => {
-            console.log(result);
-        }, (error) => {
-            console.error(error);
-        });
-    }
-
-    makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
-        return new Promise((resolve, reject) => {
-            var formData: any = new FormData();
-            var xhr = new XMLHttpRequest();
-            for(var i = 0; i < files.length; i++) {
-                formData.append("uploads[]", files[i], files[i].name);
-            }
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-                    if (xhr.status == 200) {
-                        resolve(JSON.parse(xhr.response));
-                    } else {
-                        reject(xhr.response);
-                    }
-                }
-            }
-            xhr.open("POST", url, true);
-            xhr.send(formData);
-        });
+        var files = event.srcElement.files;
+        if(event.srcElement.files[0] !== undefined) {
+            console.log('file upload');
+            let file: File = event.srcElement.files[0];
+            this.uploadService.uploadFile(file, url)
+            .catch((error) => {
+                this.errorService.handleError(error);
+            }).then((data) => {
+                this.notificationService.handleNotification(data.message, true);
+                this.picture = data.obj;
+            });
+        }
     }
 
 }

@@ -9,9 +9,9 @@
                 </div>
                 <div class="column is-4">
                     <div id="profile-info-picture" class="has-text-centered">
-                        <!--<figure id="profile-info-picture-figure" class="image is-96x96">
-                            <img [src]="?picture">
-                        </figure> -->
+                        <figure id="profile-info-picture-figure" class="image is-64x64">
+                            <img [src]="picture">
+                        </figure>
                     </div>
                 </div>
             </div>
@@ -32,10 +32,8 @@
                 </p>
                 <label for="picture" class="label">Photo de profil</label>
                 <p class="control has-icon">
-                    <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
-                    <i class="signup-icon fa fa-file-image-o"></i>
+                    <input type="file" (change)="handleUpload($event)" />
                 </p>
-                <button type="button" (click)="upload()">Upload</button>
             </div>
         </div>
         <hr>

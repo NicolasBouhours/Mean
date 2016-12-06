@@ -39,7 +39,7 @@ export class AuthService {
             newPassword: newPassword,
             newConfirmPassword: newConfirmPassword
         });
-         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.patch('http://localhost:3000/api/user/password' + token, body, {headers: headers})
             .map((response: Response) => response.json())

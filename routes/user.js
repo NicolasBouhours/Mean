@@ -6,7 +6,6 @@ let crypto = require('crypto');
 let nodemailer = require('nodemailer');
 let fs = require('fs');
 let mkdirp = require('mkdirp');
-
 let User = require('../models/user');
 
 router.post('/', (req, res, next) => {
@@ -289,8 +288,61 @@ router.post('/reset', (req, res, next) => {
     });
 });
 
-router.post('/picture', (req, res, next) => {
-    console.log('find file', req.files);
-})
+router.post("/picture", (req, res, next) => {
+    console.log('PICTURE BROW');
+    let decoded = jwt.decode(req.query.token);
+
+    User.findOne({_id: decoded.user._id}, {email: 0, password: 0},  (err, user) => {
+        if (err) {
+            return res.status(500).json({
+                title: 'Une erreur est survenue',
+                error: err
+            });
+        }
+
+        if(!user) {
+            return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'Impossible de retrouver l\'utilisateur'}
+            });
+        }
+        if (req.files.file === undefined) {
+            return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'Impossible de récupèrer l\'image'}
+            });
+        }
+        const folderPath = 'public/uploads/users/' + user._id;
+        const pictureUrl = 'http://localhost:3000/uploads/users/' + user._id;
+        const filePath = folderPath + '/' + req.files.file.filename;
+        const fileUrl = pictureUrl + '/' + req.files.file.filename;
+        mkdirp(folderPath, (err) => {
+            if (err) {
+                return res.status(500).json({
+                    title: 'Erreur',
+                    error: {message: 'Impossible de sauvegarder l\'image'}
+                });
+            }
+
+            fs.createReadStream(req.files.file.file).pipe(fs.createWriteStream(filePath));
+
+            user.picture = fileUrl;
+
+            user.save((err, savedUser) => {
+                if (err) {
+                    return res.status(500).json({
+                        title: 'Une erreur est survenue',
+                        error: err
+                    });
+                }
+
+                res.status(200).json({
+                    message: 'Photo de profil modifié avec succès',
+                    obj: fileUrl
+                });
+            });
+        });
+    });
+});
 
 module.exports = router;
