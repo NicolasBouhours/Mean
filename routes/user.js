@@ -289,4 +289,8 @@ router.post('/reset', (req, res, next) => {
     });
 });
 
+router.post('/picture', (req, res, next) => {
+    console.log('find file', req.files);
+})
+
 module.exports = router;

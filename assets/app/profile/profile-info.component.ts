@@ -15,12 +15,7 @@ import { AuthService } from './../auth/auth.service';
 export class ProfileInfoComponent {
    
     myForm: FormGroup;
-    picture: string = "";
-    src: string = "";
-    resizeOptions: ResizeOptions = {
-        resizeMaxHeight: 256,
-        resizeMaxWidth: 256
-    };
+    filesToUpload: Array<File>;
 
     constructor(private authService: AuthService, 
                 private errorService: ErrorService, 
@@ -36,7 +31,6 @@ export class ProfileInfoComponent {
           (data) => {
             this.myForm.controls['firstName'].setValue(data.obj.firstName);
             this.myForm.controls['lastName'].setValue(data.obj.lastName);
-            this.picture = data.obj.picture;
           }
         );
     }
@@ -47,16 +41,41 @@ export class ProfileInfoComponent {
         .subscribe(
           (data) => {
             this.notificationService.handleNotification(data.message, true);
-            if (this.src !== "") {
-              this.picture = this.src; 
-              this.src = "";
-            }
           }
         );
     }
 
-    /*selected(imageResult: ImageResult) {
-        this.src = imageResult.dataURL;
-            console.log(this.src);
-    }*/
+    fileChangeEvent(fileInput: any){
+        this.filesToUpload = <Array<File>> fileInput.target.files[0];
+    }
+
+    upload() {
+        this.makeFileRequest("http://localhost:3000/api/user/picture", [], this.filesToUpload).then((result) => {
+            console.log(result);
+        }, (error) => {
+            console.error(error);
+        });
+    }
+
+    makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
+        return new Promise((resolve, reject) => {
+            var formData: any = new FormData();
+            var xhr = new XMLHttpRequest();
+            for(var i = 0; i < files.length; i++) {
+                formData.append("uploads[]", files[i], files[i].name);
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        resolve(JSON.parse(xhr.response));
+                    } else {
+                        reject(xhr.response);
+                    }
+                }
+            }
+            xhr.open("POST", url, true);
+            xhr.send(formData);
+        });
+    }
+
 }
