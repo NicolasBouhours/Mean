@@ -36,7 +36,6 @@ export class NotificationComponent implements OnInit {
             (notification: Notification) => {
                 this.notification = notification;
                 this.type = 'is-' + notification.isSuccess;
-                console.log('type', this.type);
                 this.state = 'show';
 
                 let timer = Observable.timer(8000);
