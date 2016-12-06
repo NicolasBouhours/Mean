@@ -4,6 +4,8 @@ let bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
 let crypto = require('crypto');
 let nodemailer = require('nodemailer');
+let fs = require('fs');
+let mkdirp = require('mkdirp');
 
 let User = require('../models/user');
 
@@ -146,7 +148,28 @@ router.patch('/', (req, res, next) => {
         }
 
         user.firstName = req.body.firstName;
-        user.lastName = req. body.lastName;
+        user.lastName = req.body.lastName;
+
+        /*crypto.randomBytes(10, function(err, buffer) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'Erreur enregistrement image',
+                    error: err
+                });
+            }
+            const token = buffer.toString('hex');
+            let base64Data = req.body.picture.replace(/^data:image\/png;base64,/, "");
+            mkdirp('C:/storage/picture/' + user._id, (err) => {
+                if (!err) {
+                    fs.writeFile('C:/storage/picture/' + user._id + '/' + token, base64Data, 'base64', (err) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        user.picture = 'C:/storage/picture/' + user._id + '/' + token;
+                    });
+                }
+            });
+        });*/
 
         user.save((err, savedUser) => {
             if (err) {

@@ -1,3 +1,15 @@
 hr {
     margin: 10px 0;
 }
+
+#profile-info-picture {
+    width: 100%;
+}
+
+#profile-info-picture-figure {
+    margin: 0 auto;
+}
+
+#profile-info-picture-figure img {
+    border-radius: 48px;
+}

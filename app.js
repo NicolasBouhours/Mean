@@ -32,8 +32,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/message', messageRoutes);
-app.use('/user', userRoutes);
+app.use('/api/message', messageRoutes);
+app.use('/api/user', userRoutes);
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler

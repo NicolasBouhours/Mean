@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ImageUploadModule } from 'ng2-imageupload';
 
 import { profileRouting } from './profile.routing';
 import { SharedModule } from './../shared/shared.module';
@@ -12,7 +13,8 @@ import { ProfileInfoComponent } from './profile-info.component';
   ],
   imports: [
     SharedModule,
-    profileRouting
+    profileRouting,
+    ImageUploadModule
   ]
 })
 export class ProfileModule {
