@@ -1,3 +1,4 @@
+import { ProjectService } from './../project.service';
 import { Project } from './../project.model';
 import { Component, Input } from '@angular/core';
 
@@ -8,4 +9,14 @@ import { Component, Input } from '@angular/core';
 })
 export class ProjectDetailComponent {
   @Input() project: Project;
+
+  constructor(private projectService: ProjectService) {}
+
+  onEditProject() {
+      this.projectService.projectModalEvent.emit({
+        isOpen: true,
+        isAdd: false,
+        project: this.project
+      });
+  }
 }

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { AppSettings } from './../app.settings';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Project } from './project.model';
 
@@ -8,6 +8,7 @@ import { Project } from './project.model';
 export class ProjectService {
 
     private projects: Project[] = [];
+    projectModalEvent = new EventEmitter<any>();
     
     constructor(private http: Http) { }
 

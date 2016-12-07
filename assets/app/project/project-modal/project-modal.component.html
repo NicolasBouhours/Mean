@@ -3,8 +3,9 @@
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Ajouter un tableau</p>
-        <button class="delete" (click)="onClose()"></button>
+        <p class="modal-card-title" *ngIf="!isEdit">Ajouter un tableau</p>
+        <p class="modal-card-title" *ngIf="isEdit">Editer un tableau</p>
+        <a class="delete" (click)="onClose()"></a>
       </header>
       <section class="modal-card-body">
         <p class="control has-icon">

@@ -1,3 +1,4 @@
+import { ProjectService } from './../project.service';
 import { NotificationService } from './../../shared/notification/notification.service';
 import { Project } from './../project.model';
 import { Component } from '@angular/core';
@@ -8,14 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./project-container.component.css']
 })
 export class ProjectContainerComponent {
-    isModalActive: string = '';
+
+  constructor(private projectService: ProjectService) {}
 
     onOpenModal() {
-      this.isModalActive = 'is-active';
+      this.projectService.projectModalEvent.emit({
+        isOpen: true,
+        isAdd: true
+      });
     }
 
-    onCloseModal() {
-      this.isModalActive = '';
-    }
 
 }

@@ -13,3 +13,13 @@
 .card-header .card-header-title, .card-content h1, .card-content p{
     color: white;
 }
+
+.remove-icon {
+    color: #ff3860;
+    font-size: 13px;
+}
+
+.edit-icon {
+    color: #292929;
+    font-size: 15px;
+}

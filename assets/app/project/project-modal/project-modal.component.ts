@@ -1,6 +1,6 @@
 import { NotificationService } from './../../shared/notification/notification.service';
 import { ProjectService } from './../project.service';
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Project } from './../project.model';
 
@@ -9,11 +9,10 @@ import { Project } from './../project.model';
   templateUrl: './project-modal.component.html',
   styleUrls: ['./project-modal.component.css']
 })
-export class ProjectModalComponent implements OnInit, OnChanges {
+export class ProjectModalComponent implements OnInit {
     myForm: FormGroup;
-    @Input() active: string;
-    @Output() closeModal = new EventEmitter<boolean>();
     isModalActive: string = '';
+    isEdit: boolean = false;
     modalClass = 'modal';
 
     constructor(private notificationService: NotificationService,
@@ -24,15 +23,34 @@ export class ProjectModalComponent implements OnInit, OnChanges {
             name: new FormControl(null, Validators.required),
             description: new FormControl(null)
         });
-        this.modalClass = `modal ${this.isModalActive}`;
+
+        this.projectService.projectModalEvent.subscribe(
+          (obj: any) => {
+            if (obj.isOpen) {
+              this.onOpen();
+              if(!obj.isAdd) {
+                this.isEdit = true;
+                this.myForm.controls['name'].setValue(obj.project.name);
+                this.myForm.controls['description'].setValue(obj.project.description);
+              }
+              else {
+                this.isEdit = false;
+                this.myForm.reset();
+              }
+            } else {
+              this.onClose();
+            }
+          }
+        );
     }
 
-    ngOnChanges() {
-      this.modalClass = `modal ${this.active}`;
-    }
 
     onClose() {
-      this.closeModal.emit(false);
+      this.modalClass = 'modal';
+    }
+
+    onOpen() {
+      this.modalClass = 'modal is-active';
     }
 
     onSubmit() {

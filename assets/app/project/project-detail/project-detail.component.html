@@ -1,8 +1,11 @@
-<div class="card is-3">
+<div class="card column">
   <header class="card-header">
     <p class="card-header-title">
         <small>Crée le {{project.date | date: 'dd/MM/yyyy'}}</small>
     </p>
+    <a class="card-header-icon">
+      <i class="remove-icon fa fa-remove"></i>
+    </a>
   </header>
   <div class="card-content">
     <div class="content">
@@ -15,5 +18,8 @@
     <p class="card-header-title">
         <small>{{project.users.length}} Utilisateurs</small>
     </p>
+    <a class="card-header-icon">
+      <i class="edit-icon fa fa-edit" (click)="onEditProject()"></i>
+    </a>
   </footer>
 </div>
