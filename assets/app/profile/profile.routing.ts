@@ -6,10 +6,10 @@ import { ProfilePasswordComponent } from './password/profile-password.component'
 import { ProfilePictureComponent } from './picture/profile-picture.component';
 
 const PROFILE_ROUTES : Routes = [
-  { path: '', redirectTo: 'info' },
   { path: 'info', component: ProfileInfoComponent },
   { path: 'password',component: ProfilePasswordComponent },
-  { path: 'picture', component: ProfilePictureComponent}
+  { path: 'picture', component: ProfilePictureComponent},
+  { path: '', component: ProfileContainerComponent }
 ];
 
 export const profileRouting = RouterModule.forChild(PROFILE_ROUTES);

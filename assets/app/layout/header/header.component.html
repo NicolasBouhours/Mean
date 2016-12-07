@@ -7,6 +7,9 @@
 
 
   <div class="nav-right nav-menu">
+    <a class="nav-item" [routerLink]="['/group']" *ngIf="isLoggedIn()">
+      Dashboard
+    </a>
     <a class="nav-item" [routerLink]="['/auth', 'signup']" *ngIf="!isLoggedIn()">
       S'inscrire
     </a>

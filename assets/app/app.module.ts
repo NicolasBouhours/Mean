@@ -7,6 +7,7 @@ import { routing } from './app.routing';
 
 import { NotificationService } from './shared/notification/notification.service';
 import { AuthService } from './auth/auth.service';
+import { GroupService } from './group/group.service';
 import { CanActivateViaAuthGuard } from './auth/auth.guard';
 
 import { CoreModule } from './core/core.module';
@@ -14,16 +15,12 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from './layout/header/header.component';
 import { NotificationComponent } from './shared/notification/notification.component';
-import { AuthenticationComponent } from './auth/authentication.component';
-import { ProfileContainerComponent } from './profile/container/profile-container.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
         NotificationComponent,
-        AuthenticationComponent,
-        ProfileContainerComponent
     ],
     imports: [
         BrowserModule, 
@@ -32,7 +29,7 @@ import { ProfileContainerComponent } from './profile/container/profile-container
         HttpModule,
         CoreModule
     ],
-    providers: [AuthService, NotificationService, CanActivateViaAuthGuard],
+    providers: [AuthService, NotificationService, GroupService, CanActivateViaAuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {
