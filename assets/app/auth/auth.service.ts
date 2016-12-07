@@ -53,7 +53,8 @@ export class AuthService {
     signup(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(`${AppSettings.API_ENDPOINT}user/password`, body, {headers: headers})
+        console.log(`${AppSettings.API_ENDPOINT}user`);
+        return this.http.post(`${AppSettings.API_ENDPOINT}user`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());

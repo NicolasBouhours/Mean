@@ -8,7 +8,7 @@ import { routing } from './app.routing';
 import { NotificationService } from './shared/notification/notification.service';
 import { ErrorService } from './shared/errors/error.service';
 import { AuthService } from './auth/auth.service';
-import { CanActivateViaAuthGuard } from './auth/CanActivateViaAuthGuard';
+import { CanActivateViaAuthGuard } from './auth/auth.guard';
 
 import { CoreModule } from './core/core.module';
 import { MessageModule } from './messages/message.module';

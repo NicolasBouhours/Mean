@@ -30,6 +30,11 @@ router.get('/picture', (req, res, next) => {
           }
 
           let fileURL = req.query.url;
+
+          if (req.query.url === 'default') {
+            fileURL = 'users/default.png';
+          }
+
           let storageURL = constant.STORAGE_PATH + fileURL;
 
           if(fs.existsSync(storageURL)) {

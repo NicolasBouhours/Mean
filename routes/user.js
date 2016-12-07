@@ -15,6 +15,7 @@ router.post('/', (req, res, next) => {
         lastName: req.body.lastName,
         password: bcrypt.hashSync(req.body.password, 10),
         email: req.body.email,
+        picture: 'default'
     });
 
     user.save((err, result) => {
