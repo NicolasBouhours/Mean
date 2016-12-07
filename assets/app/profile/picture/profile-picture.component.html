@@ -1,3 +1,29 @@
-<div id="profile-picture-container">
-  <p>Picture biatch</p>
+<div class="container profile-content">
+    <div class="columns is-vcentered">
+        <div class="column is-8 is-offset-2">
+            <h1 class="title">Photo de profil</h1>
+            <h2 class="subtitle">Modifier la photo que les utilisateurs verront de vous</h2>
+        </div>
+    </div>
+    <hr>
+    <!--<div class="columns is-vcentered">
+        <div class="column is-8 is-offset-2 has-text-centered">
+          <span class="icon profile-picture-icon">
+            <i class="fa fa-user-circle"></i>
+          </span>
+        </div>
+    </div> -->
+    <div class="columns is-vcentered">
+      <div class="column is-8 is-offset-2 has-text-centered">
+          <div id="profile-info-picture" class="has-text-centered">
+              <app-image [url]="picture" size="140x140" type="picture" align="center"></app-image>
+          </div>
+        </div>
+    </div>
+    <div class="columns" id="profile-picture-button">
+        <div class="column is-8 is-offset-2 has-text-centered">
+          <label for="file" class="button is-info">Modifier ma photo de profil</label>
+          <input id="file" type="file" (change)="handleUpload($event)" />
+        </div>
+    </div>
 </div>

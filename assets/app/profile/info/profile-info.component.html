@@ -1,16 +1,11 @@
-<div class="container">
+<div class="container profile-content">
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <div class="columns is-vcentered">
         <div class="column is-8 is-offset-2">
             <div class="columns">
-                <div class="column is-8">
+                <div class="column is-12">
                     <h1 class="title">Compte</h1>
                     <h2 class="subtitle">Modifier vos informations personnelles</h2>
-                </div>
-                <div class="column is-4">
-                    <div id="profile-info-picture" class="has-text-centered">
-                        <app-image [url]="picture" size="64x64" type="picture"></app-image>
-                    </div>
                 </div>
             </div>
         </div>
@@ -27,10 +22,6 @@
                 <p class="control has-icon">
                     <input type="text" id="lastName" class="input" formControlName="lastName" placeholder="Nom">
                     <i class="signup-icon fa fa-user-circle"></i>
-                </p>
-                <label for="picture" class="label">Photo de profil</label>
-                <p class="control has-icon">
-                    <input type="file" (change)="handleUpload($event)" />
                 </p>
             </div>
         </div>

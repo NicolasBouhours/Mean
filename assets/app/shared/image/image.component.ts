@@ -14,13 +14,14 @@ export class ImageComponent implements OnChanges {
     @Input() url: string;
     @Input() size: string;
     @Input() type: string;
+    @Input() align: string = "";
     imageUrl: string = "";
     classFigure: string = "";
     classImage: string = "";
 
     ngOnChanges() {
       if(this.url !== undefined && this.url !== '') {
-        this.classFigure = `image is-${this.size}`;
+        this.classFigure = `image is-${this.size} ${this.align}`;
         this.classImage = `round-${this.size}`;
         const token = localStorage.getItem('token') ? '&token=' + localStorage.getItem('token') : '';
         this.imageUrl= `${AppSettings.API_ENDPOINT}file/${this.type}?url=${this.url}${token}`;

@@ -1,0 +1,15 @@
+.profile-picture-icon {
+  width: 145px;
+  height: 145px;
+  font-size: 140px;
+  line-height: 140px;
+  color: #E0E0E0;
+}
+
+#file {
+  display: none;
+}
+
+#profile-picture-button {
+  margin-bottom: 20px;
+}

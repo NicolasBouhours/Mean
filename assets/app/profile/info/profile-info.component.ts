@@ -15,13 +15,11 @@ import { UploadService } from './../../shared/upload/upload.service';
 export class ProfileInfoComponent {
    
     myForm: FormGroup;
-    picture = '';
 
 
     constructor(private authService: AuthService, 
                 private errorService: ErrorService, 
-                private notificationService: NotificationService,
-                private uploadService: UploadService) {}
+                private notificationService: NotificationService) {}
 
     ngOnInit() {
         this.myForm = new FormGroup({
@@ -33,8 +31,6 @@ export class ProfileInfoComponent {
           (data) => {
             this.myForm.controls['firstName'].setValue(data.obj.firstName);
             this.myForm.controls['lastName'].setValue(data.obj.lastName);
-            this.picture = data.obj.picture;
-            console.log('url picture', this.picture);
           }
         );
     }
@@ -48,22 +44,4 @@ export class ProfileInfoComponent {
           }
         );
     }
-
-    handleUpload(event) {
-        let url = 'http://localhost:3000/api/user/picture';
-
-        var files = event.srcElement.files;
-        if(event.srcElement.files[0] !== undefined) {
-            console.log('file upload');
-            let file: File = event.srcElement.files[0];
-            this.uploadService.uploadFile(file, url)
-            .catch((error) => {
-                this.errorService.handleError(error);
-            }).then((data) => {
-                this.notificationService.handleNotification(data.message, true);
-                this.picture = data.obj;
-            });
-        }
-    }
-
 }
