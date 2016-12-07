@@ -20,7 +20,6 @@ export class ProfilePictureComponent {
                 private uploadService: UploadService) {}
 
     ngOnInit() {
-
         this.authService.info().subscribe(
           (data) => {
             this.picture = data.obj.picture;
@@ -34,13 +33,16 @@ export class ProfilePictureComponent {
         var files = event.srcElement.files;
         if(event.srcElement.files[0] !== undefined) {
             let file: File = event.srcElement.files[0];
-            this.uploadService.uploadFile(file, url)
-            .catch((error) => {
-                this.errorService.handleError(error);
-            }).then((data) => {
-                this.notificationService.handleNotification(data.message, true);
-                this.picture = data.obj;
-            });
+            if (file.type === 'image/png' || file.type === 'image/jpeg') {
+                this.uploadService.uploadFile(file, url)
+                .catch((error) => {
+                    console.log(error);
+                    this.errorService.handleError(error);
+                }).then((data) => {
+                    this.notificationService.handleNotification(data.message, true);
+                    this.picture = data.obj;
+                });
+            }
         }
     }
 

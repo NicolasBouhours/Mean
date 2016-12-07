@@ -292,6 +292,16 @@ router.post("/picture", (req, res, next) => {
                 error: {message: 'Impossible de récupèrer l\'image'}
             });
         }
+
+        console.log(req.files.file);
+
+        if (req.files.file.mimetype !== 'image/png' && req.files.file.mimetype !== 'image/jpeg') {
+           return res.status(500).json({
+                title: 'Erreur',
+                error: {message: 'Veuillez envoyer une image'}
+            }); 
+        }
+
         const folderPath = constant.STORAGE_PATH + 'users/' + user._id;
         const pictureUrl = 'users/' + user._id;
         const filePath = folderPath + '/' + req.files.file.filename;
