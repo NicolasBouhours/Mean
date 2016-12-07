@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var cors = require('cors');
-var multer = require('multer');
 var bb = require('express-busboy');
 
 var appRoutes = require('./routes/app');
