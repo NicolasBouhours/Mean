@@ -1,6 +1,5 @@
 import { Component, OnInit, NgZone  } from '@angular/core';
 import { AppSettings } from './../../app.settings';
-import { ErrorService } from './../../shared/errors/error.service';
 import { NotificationService } from './../../shared/notification/notification.service';
 import { AuthService } from './../../auth/auth.service';
 import { UploadService } from './../../shared/upload/upload.service';
@@ -15,7 +14,6 @@ export class ProfilePictureComponent {
     picture = '';
 
     constructor(private authService: AuthService, 
-                private errorService: ErrorService, 
                 private notificationService: NotificationService,
                 private uploadService: UploadService) {}
 

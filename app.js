@@ -10,7 +10,6 @@ var bb = require('express-busboy');
 
 var appRoutes = require('./routes/app');
 var fileRoutes = require('./routes/file');
-var messageRoutes = require('./routes/message');
 var userRoutes = require('./routes/user');
 
 var app = express();
@@ -42,7 +41,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/file', fileRoutes);
-app.use('/api/message', messageRoutes);
 app.use('/api/user', userRoutes);
 app.use('/', appRoutes);
 

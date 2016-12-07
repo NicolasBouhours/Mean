@@ -1,5 +1,4 @@
 import { FormGroup } from '@angular/forms';
-import { ErrorService } from './../shared/errors/error.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/Rx';
@@ -10,7 +9,7 @@ import { User } from './user.models';
 @Injectable()
 export class AuthService {
 
-    constructor(private http: Http, private errorService: ErrorService) { }
+    constructor(private http: Http) { }
 
     info() {
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
