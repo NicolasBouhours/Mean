@@ -7,7 +7,7 @@ import { routing } from './app.routing';
 
 import { NotificationService } from './shared/notification/notification.service';
 import { AuthService } from './auth/auth.service';
-import { GroupService } from './group/group.service';
+import { ProjectService } from './project/project.service';
 import { CanActivateViaAuthGuard } from './auth/auth.guard';
 
 import { CoreModule } from './core/core.module';
@@ -29,7 +29,7 @@ import { NotificationComponent } from './shared/notification/notification.compon
         HttpModule,
         CoreModule
     ],
-    providers: [AuthService, NotificationService, GroupService, CanActivateViaAuthGuard],
+    providers: [AuthService, NotificationService, ProjectService, CanActivateViaAuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {

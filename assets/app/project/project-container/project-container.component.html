@@ -1,0 +1,8 @@
+<div id="project-container" class="container">
+
+  <app-project-list></app-project-list>
+  <app-project-modal (submitForm)="onSubmitForm($event)" (closeModal)="onCloseModal($event)" [active]="isModalActive"></app-project-modal> 
+  <div class="project-button columns">
+    <a class="button is-success" (click)="onOpenModal()">Ajouter une tableau</a>
+  </div>
+</div>

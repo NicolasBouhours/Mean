@@ -9,7 +9,7 @@ const APP_ROUTES: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
     { path: 'profile', canActivate: [CanActivateViaAuthGuard], loadChildren: './profile/profile.module#ProfileModule' },
-    { path: 'group', canActivate: [CanActivateViaAuthGuard], loadChildren: './group/group.module#GroupModule'}
+    { path: 'project', canActivate: [CanActivateViaAuthGuard], loadChildren: './project/project.module#ProjectModule'}
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

@@ -7,7 +7,7 @@ let schema = new Schema({
     lastName: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    groups: [{type: Schema.Types.ObjectId, ref: 'Group'}],
+    projects: [{type: Schema.Types.ObjectId, ref: 'Project'}],
     picture: {type: String},
     resetPasswordToken: String,
     resetPasswordExpires: Date

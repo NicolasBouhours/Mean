@@ -1,0 +1,15 @@
+.card {
+    margin: 10px;
+}
+
+.card-header {
+    background-color: #2a64c1;
+}
+
+.card-content {
+    background-color: #3273dc;
+}
+
+.card-header .card-header-title, .card-content h1, .card-content p{
+    color: white;
+}

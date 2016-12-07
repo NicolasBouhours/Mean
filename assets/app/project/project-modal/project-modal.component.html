@@ -1,0 +1,24 @@
+<div id="project-modal" class="modal" [ngClass]="modalClass">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Ajouter un tableau</p>
+        <button class="delete" (click)="onClose()"></button>
+      </header>
+      <section class="modal-card-body">
+        <p class="control has-icon">
+          <input type="text" id="email" class="input" formControlName="name" placeholder="Nom">
+          <i class="signin-icon fa fa-commenting"></i>
+        </p>
+        <p class="control">
+          <textarea class="textarea" id="description" formControlName="description" placeholder="Description"></textarea>
+        </p>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="submit" class="button is-primary" [disabled]="!myForm.valid">Sauvegarder</button>
+        <a class="button" (click)="onClose()">Annuler</a>
+      </footer>
+    </div>
+  </form>
+</div>
