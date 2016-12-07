@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs/Rx';
 import { User } from './../user.models';
 import { AuthService } from '../auth.service';
 import { NotificationService } from './../../shared/notification/notification.service';
-import { ErrorService } from './../../shared/errors/error.service';
 
 @Component({
     selector: 'app-reset',
@@ -22,7 +21,6 @@ export class ResetComponent implements OnInit, OnDestroy {
     constructor(private authService: AuthService, 
         private router : Router, 
         private route: ActivatedRoute,
-        private errorService: ErrorService, 
         private notificationService: NotificationService) { }
 
     ngOnInit() {
@@ -41,11 +39,10 @@ export class ResetComponent implements OnInit, OnDestroy {
         this.authService.reset(this.myForm.value.newPassword, this.token)
             .subscribe(
                 data => {
-                    console.log('notification', data);
-                    this.notificationService.handleNotification(data.message, true);
+                    this.notificationService.handleNotification(data.message, 'primary');
                     this.router.navigate(['/auth', 'signin']);
                 },
-                error => this.errorService.handleError(error)
+                error => this.notificationService.handleNotification(error.title, 'danger')
         );
 
         this.myForm.reset();

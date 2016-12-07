@@ -43,13 +43,13 @@ router.post('/signin', (req, res, next) => {
 
         if(!user) {
             return res.status(500).json({
-                title: 'Echec de la connexion',
+                title: 'Les identifiants sont incorrects',
                 error: {message: 'Les identifiants sont incorrects'}
             });
         }
         if (!bcrypt.compareSync(req.body.password, user.password)) {
             return res.status(500).json({
-                title: 'Echec de la connexion',
+                title: 'Les identifiants sont incorrects',
                 error: {message: 'Les identifiants sont incorrects'}
             });
         }
@@ -67,7 +67,7 @@ router.get('/profile', (req, res, next) => {
     User.findOne({_id: decoded.user._id}, {email: 0, password: 0},  (err, user) => {
         if (err) {
             return res.status(500).json({
-                title: 'Une erreur est survenue',
+                title: 'Impossible de récupèrer les informations utilisateur',
                 error: err
             });
         }
@@ -97,21 +97,21 @@ router.patch('/password', (req, res, next) => {
 
         if(!user) {
             return res.status(500).json({
-                title: 'Erreur',
+                title: 'Impossible de mettre à jour le mot de passe',
                 error: {message: 'Impossible de mettre à jour le mot de passe'}
             });
         }
 
         if (!bcrypt.compareSync(req.body.password, user.password)) {
             return res.status(500).json({
-                title: 'Erreur',
+                title: 'Le mot de passe ne correspond pas a l\'actuel mot de passe',
                 error: {message: 'Le mot de passe ne correspond pas a l\'actuel mot de passe'}
             });
         }
         
         if (req.body.newPassword !== req.body.newConfirmPassword) {
             return res.status(500).json({
-                title: 'Erreur',
+                title: 'Les deux mots de passe ne sont pas identiques',
                 error: {message: 'Les deux mots de passe ne sont pas identiques'}
             });    
         }
@@ -121,7 +121,7 @@ router.patch('/password', (req, res, next) => {
         user.save((error, savedUser) => {
             if(error) {
                 return res.status(500).json({
-                    title: 'Erreur',
+                    title: 'Impossible de mettre à jour le mot de passe',
                     error: {message: 'Impossible de mettre à jour le mot de passe'}
                 });
             }
@@ -143,7 +143,7 @@ router.patch('/', (req, res, next) => {
         }
         if(!user) {
             return res.status(500).json({
-                title: 'Erreur',
+                title: 'Impossible de récupèrer les informations utilisateur',
                 error: {message: 'Impossible de récupèrer les informations utilisateur'}
             });
         }
@@ -177,7 +177,7 @@ router.post('/forgot', (req, res, next) => {
 
         if(!user) {
             return res.status(500).json({
-                title: 'Erreur',
+                title: 'Aucun compte avec cet email n\'a été trouvé',
                 error: {message: 'Aucun compte avec cet email n\'a été trouvé'}
             });
         }
@@ -223,7 +223,7 @@ router.post('/forgot', (req, res, next) => {
                 transporter.sendMail(mailOptions, function(error, info){
                     if(error){
                         return res.status(500).json({
-                            title: 'Erreur',
+                            title: 'Impossible d\'envoyer l\'email de récupération de mot de passe',
                             error: {message: 'Impossible d\'envoyer l\'email de récupération de mot de passe'}
                         });
                     }
@@ -247,7 +247,7 @@ router.post('/reset', (req, res, next) => {
 
         if(!user) {
             return res.status(500).json({
-                title: 'Erreur',
+                title: 'La demande de mot de passe est trop ancienne(plus de deux heures), veuillez recommencer',
                 error: {message: 'La demande de mot de passe est trop ancienne(plus de deux heures), veuillez recommencer'}
             });
         }
@@ -282,13 +282,13 @@ router.post("/picture", (req, res, next) => {
 
         if(!user) {
             return res.status(500).json({
-                title: 'Erreur',
+                title: 'Impossible de retrouver l\'utilisateur',
                 error: {message: 'Impossible de retrouver l\'utilisateur'}
             });
         }
         if (req.files.file === undefined) {
             return res.status(500).json({
-                title: 'Erreur',
+                title: 'Impossible de récupèrer l\'image',
                 error: {message: 'Impossible de récupèrer l\'image'}
             });
         }
@@ -297,7 +297,7 @@ router.post("/picture", (req, res, next) => {
 
         if (req.files.file.mimetype !== 'image/png' && req.files.file.mimetype !== 'image/jpeg') {
            return res.status(500).json({
-                title: 'Erreur',
+                title: 'Veuillez envoyer une image',
                 error: {message: 'Veuillez envoyer une image'}
             }); 
         }
@@ -309,7 +309,7 @@ router.post("/picture", (req, res, next) => {
         mkdirp(folderPath, (err) => {
             if (err) {
                 return res.status(500).json({
-                    title: 'Erreur',
+                    title: 'Impossible de sauvegarder l\'image',
                     error: {message: 'Impossible de sauvegarder l\'image'}
                 });
             }

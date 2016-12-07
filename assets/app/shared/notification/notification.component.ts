@@ -25,7 +25,7 @@ import { Notification } from './notification.model';
 })
 export class NotificationComponent implements OnInit {
     notification: Notification;
-    type = 'is-primary';
+    type = '';
     state = 'hidden';
 
     constructor(private notificationService: NotificationService) { }
@@ -35,7 +35,7 @@ export class NotificationComponent implements OnInit {
             .subscribe(
             (notification: Notification) => {
                 this.notification = notification;
-                this.type = 'is-' + notification.isSuccess;
+                this.type = 'is-' + notification.type;
                 this.state = 'show';
 
                 let timer = Observable.timer(8000);

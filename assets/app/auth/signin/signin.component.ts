@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../auth.service';
+import { NotificationService } from './../../shared/notification/notification.service';
 import { User } from '../user.models';
 
 @Component({
@@ -13,7 +14,9 @@ import { User } from '../user.models';
 export class SigninComponent {
     myForm: FormGroup;
 
-    constructor(private authService: AuthService, private router : Router) { }
+    constructor(private authService: AuthService, 
+                private router : Router,
+                private notificationService: NotificationService) { }
 
     ngOnInit() {
         this.myForm = new FormGroup({
@@ -32,11 +35,11 @@ export class SigninComponent {
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
+                    this.myForm.reset();
                     this.router.navigateByUrl('/');
                 },
-                error => console.log(error)
+                error => this.notificationService.handleNotification(error.title, 'danger')
         );
 
-        this.myForm.reset();
     } 
 }

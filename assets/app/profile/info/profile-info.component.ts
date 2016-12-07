@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { ErrorService } from './../../shared/errors/error.service';
 import { NotificationService } from './../../shared/notification/notification.service';
 import { AuthService } from './../../auth/auth.service';
 import { User } from './../../auth/user.models';
@@ -18,7 +17,6 @@ export class ProfileInfoComponent {
 
 
     constructor(private authService: AuthService, 
-                private errorService: ErrorService, 
                 private notificationService: NotificationService) {}
 
     ngOnInit() {
@@ -40,8 +38,9 @@ export class ProfileInfoComponent {
       this.authService.update(user)
         .subscribe(
           (data) => {
-            this.notificationService.handleNotification(data.message, true);
-          }
+            this.notificationService.handleNotification(data.message, 'primary');
+          },
+          (error) => this.notificationService.handleNotification(error.title, 'danger')
         );
     }
 }

@@ -112,13 +112,13 @@ router.delete('/:id', (req, res, next) => {
         }
         if (!message) {
             return res.status(500).json({
-                title: 'Une erreur est survenue',
+                title: 'Message introuvable',
                 error: {message: 'Message introuvable'}
             });
         }
         if(message.user != decoded.user._id) {
             return res.status(401).json({
-                title: 'Erreur',
+                title: 'Utilisateur non authentifié',
                 error: {message: 'Utilisateur non authentifié'}
             });
         }

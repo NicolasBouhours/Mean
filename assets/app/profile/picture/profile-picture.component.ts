@@ -29,19 +29,19 @@ export class ProfilePictureComponent {
 
     handleUpload(event) {
         let url = `${AppSettings.API_ENDPOINT}user/picture`;
-
         var files = event.srcElement.files;
         if(event.srcElement.files[0] !== undefined) {
             let file: File = event.srcElement.files[0];
             if (file.type === 'image/png' || file.type === 'image/jpeg') {
                 this.uploadService.uploadFile(file, url)
                 .catch((error) => {
-                    console.log(error);
-                    this.errorService.handleError(error);
+                    this.notificationService.handleNotification(error.title, 'danger');
                 }).then((data) => {
-                    this.notificationService.handleNotification(data.message, true);
+                    this.notificationService.handleNotification(data.message, 'primary');
                     this.picture = data.obj;
                 });
+            } else {
+                this.notificationService.handleNotification('Merci d\'envoyer des fichiers de type image', 'danger');
             }
         }
     }

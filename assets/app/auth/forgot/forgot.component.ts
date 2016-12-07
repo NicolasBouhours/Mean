@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from './../user.models';
 import { AuthService } from '../auth.service';
-import { ErrorService } from './../../shared/errors/error.service';
 import { NotificationService } from './../../shared/notification/notification.service';
 
 @Component({
@@ -15,7 +14,6 @@ export class ForgotComponent {
 
     constructor(
         private authService: AuthService, 
-        private errorService: ErrorService, 
         private notificationService: NotificationService) { }
 
     ngOnInit() {
@@ -32,9 +30,9 @@ export class ForgotComponent {
         this.authService.forgot(user)
             .subscribe(
                 data => {
-                    this.notificationService.handleNotification(data.message, true);
+                    this.notificationService.handleNotification(data.message, 'primary');
                 },
-                error => this.errorService.handleError(error)
+                error => this.notificationService.handleNotification(error.title, 'danger')
         );
 
         this.myForm.reset();

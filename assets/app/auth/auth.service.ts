@@ -17,7 +17,6 @@ export class AuthService {
         return this.http.get(`${AppSettings.API_ENDPOINT}user/profile${token}`)
             .map((response: Response) => response.json())
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
         });
     }
@@ -29,7 +28,6 @@ export class AuthService {
         return this.http.patch(`${AppSettings.API_ENDPOINT}user${token}`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
         });
     }
@@ -45,7 +43,6 @@ export class AuthService {
         return this.http.patch(`${AppSettings.API_ENDPOINT}user/password${token}`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
         });
     }
@@ -57,7 +54,6 @@ export class AuthService {
         return this.http.post(`${AppSettings.API_ENDPOINT}user`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
         });
     }
@@ -68,7 +64,6 @@ export class AuthService {
         return this.http.post(`${AppSettings.API_ENDPOINT}user/signin`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
         });
     }
@@ -79,7 +74,6 @@ export class AuthService {
         return this.http.post(`${AppSettings.API_ENDPOINT}user/forgot`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
         });
     }
@@ -93,7 +87,6 @@ export class AuthService {
         return this.http.post(`${AppSettings.API_ENDPOINT}user/reset`, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
-                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
         });
     }
@@ -112,10 +105,10 @@ export class AuthService {
             let confirmPassword = group.controls[confirmPasswordKey];
         
             if ((confirmPassword.value != undefined && confirmPassword.value.length > 0) && password.value !== confirmPassword.value) {
-              return {
+                return {
                 mismatchedPasswords: true
-              };
+                };
             }
-          }
+        }
     }
 }
