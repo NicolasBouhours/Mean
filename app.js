@@ -9,6 +9,7 @@ var cors = require('cors');
 var bb = require('express-busboy');
 
 var appRoutes = require('./routes/app');
+var fileRoutes = require('./routes/file');
 var messageRoutes = require('./routes/message');
 var userRoutes = require('./routes/user');
 
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/api/file', fileRoutes);
 app.use('/api/message', messageRoutes);
 app.use('/api/user', userRoutes);
 app.use('/', appRoutes);

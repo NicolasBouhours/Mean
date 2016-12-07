@@ -1,5 +1,4 @@
 import { Component, OnInit, NgZone  } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ErrorService } from './../../shared/errors/error.service';
 import { NotificationService } from './../../shared/notification/notification.service';
@@ -8,13 +7,12 @@ import { User } from './../../auth/user.models';
 import { UploadService } from './../../shared/upload/upload.service';
 
 @Component({
-    selector: 'app-profile-info',
-    templateUrl: './profile-info.component.html',
-    styleUrls: ['./profile-info.component.css']
+    selector: 'app-profile-picture',
+    templateUrl: './profile-picture.component.html',
+    styleUrls: ['./profile-picture.component.css']
 })
-export class ProfileInfoComponent {
+export class ProfilePictureComponent {
    
-    myForm: FormGroup;
     picture = '';
 
 
@@ -24,27 +22,10 @@ export class ProfileInfoComponent {
                 private uploadService: UploadService) {}
 
     ngOnInit() {
-        this.myForm = new FormGroup({
-            firstName: new FormControl(null, Validators.required),
-            lastName: new FormControl(null, Validators.required)
-        });
 
         this.authService.info().subscribe(
           (data) => {
-            this.myForm.controls['firstName'].setValue(data.obj.firstName);
-            this.myForm.controls['lastName'].setValue(data.obj.lastName);
             this.picture = data.obj.picture;
-            console.log('url picture', this.picture);
-          }
-        );
-    }
-
-    onSubmit() {
-      const user = new User('', '', this.myForm.value.firstName, this.myForm.value.lastName, '');
-      this.authService.update(user)
-        .subscribe(
-          (data) => {
-            this.notificationService.handleNotification(data.message, true);
           }
         );
     }

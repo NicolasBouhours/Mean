@@ -292,7 +292,7 @@ router.post("/picture", (req, res, next) => {
             });
         }
         const folderPath = constant.STORAGE_PATH + 'users/' + user._id;
-        const pictureUrl = constant.URL_PATH + 'users/' + user._id;
+        const pictureUrl = 'users/' + user._id;
         const filePath = folderPath + '/' + req.files.file.filename;
         const fileUrl = pictureUrl + '/' + req.files.file.filename;
         mkdirp(folderPath, (err) => {
