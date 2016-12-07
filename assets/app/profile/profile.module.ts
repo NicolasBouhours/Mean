@@ -12,7 +12,6 @@ import { ImageComponent } from './../shared/image/image.component';
 
 @NgModule({
   declarations: [
-    ProfileContainerComponent,
     ProfileInfoComponent,
     ProfilePasswordComponent,
     ProfilePictureComponent,

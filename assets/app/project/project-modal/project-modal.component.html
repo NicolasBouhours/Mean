@@ -8,10 +8,12 @@
         <a class="delete" (click)="onClose()"></a>
       </header>
       <section class="modal-card-body">
+        <label for="name" class="label">Nom</label>
         <p class="control has-icon">
-          <input type="text" id="email" class="input" formControlName="name" placeholder="Nom">
+          <input type="text" id="name" class="input" formControlName="name" placeholder="Nom">
           <i class="signin-icon fa fa-commenting"></i>
         </p>
+        <label for="description" class="label">Description</label>
         <p class="control">
           <textarea class="textarea" id="description" formControlName="description" placeholder="Description"></textarea>
         </p>

@@ -14,6 +14,7 @@ import { CoreModule } from './core/core.module';
 
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from './layout/header/header.component';
+import { ProfileContainerComponent } from './profile/container/profile-container.component';
 import { NotificationComponent } from './shared/notification/notification.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { NotificationComponent } from './shared/notification/notification.compon
         AppComponent,
         HeaderComponent,
         NotificationComponent,
+        ProfileContainerComponent
     ],
     imports: [
         BrowserModule, 

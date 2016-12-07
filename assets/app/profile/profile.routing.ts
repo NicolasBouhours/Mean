@@ -9,7 +9,7 @@ const PROFILE_ROUTES : Routes = [
   { path: 'info', component: ProfileInfoComponent },
   { path: 'password',component: ProfilePasswordComponent },
   { path: 'picture', component: ProfilePictureComponent},
-  { path: '', component: ProfileContainerComponent }
+  { path: '', redirectTo: 'info' }
 ];
 
 export const profileRouting = RouterModule.forChild(PROFILE_ROUTES);
