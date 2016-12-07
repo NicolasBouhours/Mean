@@ -7,6 +7,7 @@ let nodemailer = require('nodemailer');
 let fs = require('fs');
 let mkdirp = require('mkdirp');
 let User = require('../models/user');
+const constant = require('../config/constant');
 
 router.post('/', (req, res, next) => {
     let user = new User({
@@ -149,27 +150,6 @@ router.patch('/', (req, res, next) => {
         user.firstName = req.body.firstName;
         user.lastName = req.body.lastName;
 
-        /*crypto.randomBytes(10, function(err, buffer) {
-            if (err) {
-                return res.status(500).json({
-                    title: 'Erreur enregistrement image',
-                    error: err
-                });
-            }
-            const token = buffer.toString('hex');
-            let base64Data = req.body.picture.replace(/^data:image\/png;base64,/, "");
-            mkdirp('C:/storage/picture/' + user._id, (err) => {
-                if (!err) {
-                    fs.writeFile('C:/storage/picture/' + user._id + '/' + token, base64Data, 'base64', (err) => {
-                        if (err) {
-                            console.log(err);
-                        }
-                        user.picture = 'C:/storage/picture/' + user._id + '/' + token;
-                    });
-                }
-            });
-        });*/
-
         user.save((err, savedUser) => {
             if (err) {
                 return res.status(500).json({
@@ -289,7 +269,6 @@ router.post('/reset', (req, res, next) => {
 });
 
 router.post("/picture", (req, res, next) => {
-    console.log('PICTURE BROW');
     let decoded = jwt.decode(req.query.token);
 
     User.findOne({_id: decoded.user._id}, {email: 0, password: 0},  (err, user) => {
@@ -312,8 +291,8 @@ router.post("/picture", (req, res, next) => {
                 error: {message: 'Impossible de récupèrer l\'image'}
             });
         }
-        const folderPath = 'public/uploads/users/' + user._id;
-        const pictureUrl = 'http://localhost:3000/uploads/users/' + user._id;
+        const folderPath = constant.STORAGE_PATH + 'users/' + user._id;
+        const pictureUrl = constant.URL_PATH + 'users/' + user._id;
         const filePath = folderPath + '/' + req.files.file.filename;
         const fileUrl = pictureUrl + '/' + req.files.file.filename;
         mkdirp(folderPath, (err) => {
