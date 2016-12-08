@@ -3,7 +3,7 @@
     <p class="card-header-title">
         <small>Crée le {{project.date | date: 'dd/MM/yyyy'}}</small>
     </p>
-    <a class="card-header-icon">
+    <a class="card-header-icon" *ngIf="belongToUser()">
       <i class="remove-icon fa fa-remove" (click)="onDeleteProject()"></i>
     </a>
   </header>
@@ -18,7 +18,7 @@
     <p class="card-header-title">
         <small>{{project.users.length}} Utilisateurs</small>
     </p>
-    <a class="card-header-icon">
+    <a class="card-header-icon" *ngIf="belongToUser()">
       <i class="edit-icon fa fa-edit" (click)="onEditProject()"></i>
     </a>
   </footer>

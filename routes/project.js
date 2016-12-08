@@ -20,7 +20,7 @@ router.use('/', (req, res, next) => {
 router.get('/', (req, res) => {
   let decoded = jwt.decode(req.query.token);
   User.findById(decoded.user._id).select('_id firstName lastName projects')
-    .populate('projects', '_id name description date users').exec((err, projects) => {
+    .populate('projects', '_id name description date creator users').exec((err, projects) => {
     if (err) {
       return res.status(500).json({
         title: 'Une erreur est survenue',
@@ -104,6 +104,13 @@ router.patch('/:id', (req, res) => {
         });
       }
 
+      if (project.creator != user._id) {
+        return res.status(500).json({
+            title: 'Impossible, vous n\'êtes pas le créateur de ce tableau',
+            error: err
+          });
+      }
+
       project.name = req.body.name;
       project.description = req.body.description;
 
@@ -146,6 +153,14 @@ router.delete('/:id', (req, res) => {
           error: {message: 'Tableux non trouvés'}
         });
       }
+
+      if (project.creator.toString() != user._id) {
+        return res.status(500).json({
+            title: 'Impossible, vous n\'êtes pas le créateur de ce tableau',
+            error: err
+          });
+      }
+
       project.remove((err, removedProject) => {
         if (err) {
           return res.status(500).json({

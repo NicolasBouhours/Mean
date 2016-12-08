@@ -22,7 +22,7 @@ export class ProjectService {
             const projects = response.json().obj.projects;
             let transformedProjects: Project[] = [];
             for (let project of projects) {
-                transformedProjects.push(new Project(project.name, project.description, project._id, project.date, project.users));
+                transformedProjects.push(new Project(project.name, project.description, project._id, project.date, project.creator, project.users));
             }
             this.projects = transformedProjects;
             return transformedProjects;
@@ -38,7 +38,7 @@ export class ProjectService {
         return this.http.post(`${AppSettings.API_ENDPOINT}project${token}`, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
-                const project = new Project(result.obj.name, result.obj.description, result.obj._id, result.obj.date, [{}]);
+                const project = new Project(result.obj.name, result.obj.description, result.obj._id, result.obj.date, localStorage.getItem('userId'), [{}]);
                 this.projects.push(project);
                 return result;
             })

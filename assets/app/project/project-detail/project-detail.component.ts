@@ -23,4 +23,8 @@ export class ProjectDetailComponent {
   onDeleteProject() {
     this.projectService.deleteProjectEvent.emit(this.project);
   }
+
+  belongToUser() {
+      return this.project.creator === localStorage.getItem('userId');
+  }
 }

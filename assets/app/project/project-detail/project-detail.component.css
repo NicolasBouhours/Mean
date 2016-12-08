@@ -10,6 +10,7 @@
 
 .card-content {
     background-color: #3273dc;
+    min-height: 200px;
 }
 
 .card-header .card-header-title, .card-content h1, .card-content p{
