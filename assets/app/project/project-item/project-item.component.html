@@ -7,7 +7,7 @@
       <i class="remove-icon fa fa-remove" (click)="onDeleteProject()"></i>
     </a>
   </header>
-  <div class="card-content">
+  <div class="card-content" (click)="onDetail()">
     <div class="content">
         <h1>{{ project.name}}</h1>
         <p>{{ project.description}}</p> 

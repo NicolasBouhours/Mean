@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProjectService } from './../project.service';
 import { Project } from './../project.model';
 import { Component, Input } from '@angular/core';
@@ -10,7 +11,8 @@ import { Component, Input } from '@angular/core';
 export class ProjectItemComponent {
   @Input() project: Project;
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private projectService: ProjectService,
+    private router: Router) {}
 
   onEditProject() {
       this.projectService.projectModalEvent.emit({
@@ -22,6 +24,10 @@ export class ProjectItemComponent {
 
   onDeleteProject() {
     this.projectService.deleteProjectEvent.emit(this.project);
+  }
+
+  onDetail() {
+    this.router.navigate(['/project', this.project.id]);
   }
 
   belongToUser() {
