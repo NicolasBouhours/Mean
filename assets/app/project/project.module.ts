@@ -1,4 +1,5 @@
-import { GroupListComponent } from './group/group-list/group-list.component';
+import { GroupModalComponent } from './group/group-modal/group-modal.component';
+import { GroupContainerComponent } from './group/group-container/group-container.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
@@ -20,7 +21,8 @@ import { ProjectConfirmDeleteComponent } from './project-confirm-delete/project-
     ProjectConfirmDeleteComponent,
     ProjectDetailComponent,
 
-    GroupListComponent
+    GroupContainerComponent,
+    GroupModalComponent
   ],
   imports: [
     SharedModule,

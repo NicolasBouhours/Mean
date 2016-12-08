@@ -1,3 +1,4 @@
+import { GroupService } from './project/group/group.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -31,7 +32,7 @@ import { NotificationComponent } from './shared/notification/notification.compon
         HttpModule,
         CoreModule
     ],
-    providers: [AuthService, NotificationService, ProjectService, CanActivateViaAuthGuard],
+    providers: [AuthService, NotificationService, ProjectService, GroupService, CanActivateViaAuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {

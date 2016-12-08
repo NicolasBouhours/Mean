@@ -1,3 +1,4 @@
+import { CanActivateViaAuthGuard } from './../auth/auth.guard';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { RouterModule } from '@angular/router';
 import { ProjectContainerComponent } from './project-container/project-container.component';

@@ -1,0 +1,23 @@
+<div id="project-modal" class="modal" [ngClass]="modalClass">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title" *ngIf="!isEdit">Ajouter un groupe</p>
+        <p class="modal-card-title" *ngIf="isEdit">Editer un groupe</p>
+        <a class="delete" (click)="onClose()"></a>
+      </header>
+      <section class="modal-card-body">
+        <label for="name" class="label">Nom</label>
+        <p class="control has-icon">
+          <input type="text" id="name" class="input" formControlName="name" placeholder="Nom">
+          <i class="signin-icon fa fa-commenting"></i>
+        </p>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="submit" class="button is-primary" [disabled]="!myForm.valid">Sauvegarder</button>
+        <a class="button" (click)="onClose()">Annuler</a>
+      </footer>
+    </div>
+  </form>
+</div>

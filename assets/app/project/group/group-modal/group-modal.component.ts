@@ -1,41 +1,41 @@
-import { NotificationService } from './../../shared/notification/notification.service';
-import { ProjectService } from './../project.service';
+import { Subscription } from 'rxjs/Rx';
+import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from './../../../shared/notification/notification.service';
+import { GroupService } from './../group.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Project } from './../project.model';
+import { Group } from './../group.model';
 
 @Component({
-  selector: 'app-project-modal',
-  templateUrl: './project-modal.component.html'
+  selector: 'app-group-modal',
+  templateUrl: './group-modal.component.html'
 })
-export class ProjectModalComponent implements OnInit {
+export class GroupModalComponent implements OnInit {
     myForm: FormGroup;
     isModalActive: string = '';
     isEdit: boolean = false;
     modalClass = 'modal';
-    project: Project;
+    group: Group;
 
     constructor(private notificationService: NotificationService,
-      private projectService: ProjectService) {}
+      private groupService: GroupService,
+      private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.myForm = new FormGroup({
-            name: new FormControl(null, Validators.required),
-            description: new FormControl(null)
+            name: new FormControl(null, Validators.required)
         });
 
-        this.projectService.projectModalEvent.subscribe(
+        this.groupService.groupModalEvent.subscribe(
           (obj: any) => {
             if (obj.isOpen) {
               this.onOpen();
               if(!obj.isAdd) {
                 this.isEdit = true;
-                this.project = obj.project;
-                this.myForm.controls['name'].setValue(obj.project.name);
-                this.myForm.controls['description'].setValue(obj.project.description);
+                this.group = obj.group;
+                this.myForm.controls['name'].setValue(obj.group.name);
               }
               else {
-                console.log('new form');
                 this.isEdit = false;
                 this.myForm.reset();
               }
@@ -58,9 +58,9 @@ export class ProjectModalComponent implements OnInit {
     onSubmit() {
       console.log('on submit');
       if(!this.isEdit) {
-        const project = new Project(this.myForm.value.name, this.myForm.value.description);
+        const group = new Group(this.myForm.value.name);
         console.log('add project');
-        this.projectService.saveProject(project)
+        this.groupService.saveGroup(group)
           .subscribe(
             (data) => {
               this.onClose();
@@ -70,19 +70,19 @@ export class ProjectModalComponent implements OnInit {
             (error) => this.notificationService.handleNotification(error.title, 'danger')
           );
       } else {
-        const project = new Project(this.myForm.value.name, this.myForm.value.description, this.project.id);
+        const group = new Group(this.myForm.value.name, this.group.id);
         console.log('update project');
-        this.projectService.updateProject(project)
+        this.groupService.updateGroup(group)
           .subscribe(
             (data) => {
               this.onClose();
               this.notificationService.handleNotification(data.message, 'primary');
-              this.project.name = project.name;
-              this.project.description = project.description;
+              this.group.name = group.name;
               this.myForm.reset();
             },  
             (error) => this.notificationService.handleNotification(error.title, 'danger')
           );
       }
     }
+
 }
