@@ -1,0 +1,17 @@
+<div id="project-confirm-modal" class="modal" [ngClass]="modalClass">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Supprimer le projet {{project.name}}</p>
+        <a class="delete" (click)="onClose()"></a>
+      </header>
+      <section class="modal-card-body">
+        <h3>Vous êtes sur le point de supprimer le projet !</h3>
+        <p>Faites attention, cette action est irrémédiable et les données du tableau ne seront pas retrouvable</p>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="submit" class="button is-danger" (click)="onDeleteProject()">Supprimer</button>
+        <a class="button" (click)="onClose()">Annuler</a>
+      </footer>
+    </div>
+</div>

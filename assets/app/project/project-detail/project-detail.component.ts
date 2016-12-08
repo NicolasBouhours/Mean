@@ -19,4 +19,8 @@ export class ProjectDetailComponent {
         project: this.project
       });
   }
+
+  onDeleteProject() {
+    this.projectService.deleteProjectEvent.emit(this.project);
+  }
 }

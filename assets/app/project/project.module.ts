@@ -7,7 +7,7 @@ import { ProjectContainerComponent } from './project-container/project-container
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ProjectModalComponent } from './project-modal/project-modal.component';
 import { ProjectListComponent } from './project-list/project-list.component';
-
+import { ProjectConfirmDeleteComponent } from './project-confirm-delete/project-confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { ProjectListComponent } from './project-list/project-list.component';
     ProjectListComponent,
     ProjectDetailComponent,
     ProjectModalComponent,
-    ProjectDetailComponent    
+    ProjectDetailComponent,
+    ProjectConfirmDeleteComponent
   ],
   imports: [
     SharedModule,

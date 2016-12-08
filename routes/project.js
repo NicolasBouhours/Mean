@@ -80,7 +80,7 @@ router.post('/', (req, res) => {
   });
 });
 
-router.patch('/', (req, res) => {
+router.patch('/:id', (req, res) => {
   let decoded = jwt.decode(req.query.token);
   User.findById(decoded.user._id, (err, user) => {
     if (err) {
@@ -96,7 +96,7 @@ router.patch('/', (req, res) => {
       });
     }
 
-    Project.findById(req.body.id, (err, project) => {
+    Project.findById(req.params.id, (err, project) => {
       if (err || !project) {
         return res.status(500).json({
           title: 'Tableaux non trouvés',
@@ -110,12 +110,12 @@ router.patch('/', (req, res) => {
       project.save((err, savedProject) => {
         if (err) {
           return res.status(500).json({
-            title: 'Impossible de supprimé le tableau',
+            title: 'Impossible de mettre à jour le tableau',
             error: err
           });
         }
         res.status(201).json({
-          message: 'Tableau supprimé avec succès',
+          message: 'Tableau mis à jour avec succès',
           obj: savedProject
         });
       });
@@ -123,7 +123,7 @@ router.patch('/', (req, res) => {
   });
 });
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
   let decoded = jwt.decode(req.query.token);
   User.findById(decoded.user._id, (err, user) => {
     if (err) {
@@ -139,7 +139,7 @@ router.delete('/', (req, res) => {
       });
     }
 
-    Project.findById(req.body.id, (err, project) => {
+    Project.findById(req.params.id, (err, project) => {
       if (err || !project) {
         return res.status(500).json({
           title: 'Tableaux non trouvés',

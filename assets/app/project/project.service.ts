@@ -6,9 +6,12 @@ import { Project } from './project.model';
 
 @Injectable()
 export class ProjectService {
-
+    //Data
     private projects: Project[] = [];
+
+    //Events
     projectModalEvent = new EventEmitter<any>();
+    deleteProjectEvent = new EventEmitter<Project>();
     
     constructor(private http: Http) { }
 
@@ -48,7 +51,7 @@ export class ProjectService {
         const body = JSON.stringify(project);
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.patch(`${AppSettings.API_ENDPOINT}project${token}`, body, {headers: headers})
+        return this.http.patch(`${AppSettings.API_ENDPOINT}project/${project.id}${token}`, body, {headers: headers})
             .map((response: Response) => {
                 return response.json();
             })
