@@ -3,11 +3,11 @@ import { Project } from './../project.model';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-project-detail',
-  templateUrl: './project-detail.component.html',
-  styleUrls: ['./project-detail.component.css']
+  selector: 'app-project-item',
+  templateUrl: './project-item.component.html',
+  styleUrls: ['./project-item.component.css']
 })
-export class ProjectDetailComponent {
+export class ProjectItemComponent {
   @Input() project: Project;
 
   constructor(private projectService: ProjectService) {}
