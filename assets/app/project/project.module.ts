@@ -1,3 +1,4 @@
+import { GroupItemComponent } from './group/group-item/group-item.component';
 import { GroupModalComponent } from './group/group-modal/group-modal.component';
 import { GroupContainerComponent } from './group/group-container/group-container.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
@@ -22,7 +23,8 @@ import { ProjectConfirmDeleteComponent } from './project-confirm-delete/project-
     ProjectDetailComponent,
 
     GroupContainerComponent,
-    GroupModalComponent
+    GroupModalComponent,
+    GroupItemComponent
   ],
   imports: [
     SharedModule,

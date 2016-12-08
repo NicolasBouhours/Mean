@@ -56,10 +56,8 @@ export class GroupModalComponent implements OnInit {
     }
 
     onSubmit() {
-      console.log('on submit');
       if(!this.isEdit) {
         const group = new Group(this.myForm.value.name);
-        console.log('add project');
         this.groupService.saveGroup(group)
           .subscribe(
             (data) => {
@@ -71,7 +69,6 @@ export class GroupModalComponent implements OnInit {
           );
       } else {
         const group = new Group(this.myForm.value.name, this.group.id);
-        console.log('update project');
         this.groupService.updateGroup(group)
           .subscribe(
             (data) => {

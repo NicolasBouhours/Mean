@@ -56,10 +56,8 @@ export class ProjectModalComponent implements OnInit {
     }
 
     onSubmit() {
-      console.log('on submit');
       if(!this.isEdit) {
         const project = new Project(this.myForm.value.name, this.myForm.value.description);
-        console.log('add project');
         this.projectService.saveProject(project)
           .subscribe(
             (data) => {
@@ -71,7 +69,6 @@ export class ProjectModalComponent implements OnInit {
           );
       } else {
         const project = new Project(this.myForm.value.name, this.myForm.value.description, this.project.id);
-        console.log('update project');
         this.projectService.updateProject(project)
           .subscribe(
             (data) => {

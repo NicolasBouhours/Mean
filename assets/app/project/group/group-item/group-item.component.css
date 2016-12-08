@@ -1,0 +1,30 @@
+.card {
+    margin: 5px;
+}
+
+.card:first-child {
+    margin-left: 25px;
+}
+
+.card-header {
+    background-color: whitesmoke;
+}
+
+.card-content {
+    background-color: whitesmoke;
+}
+
+.card-header-title h1{
+    color:#4a4a4a;
+    font-weight: bold;
+}
+
+.remove-icon {
+    color: #ff3860;
+    font-size: 13px;
+}
+
+.edit-icon {
+    color: #292929;
+    font-size: 15px;
+}
