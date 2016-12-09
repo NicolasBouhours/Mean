@@ -51,7 +51,7 @@ exports.signIn = (req, res) => {
                 error: {message: 'Les identifiants sont incorrects'}
             });
         }
-        let token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
+        let token = jwt.sign({user: user}, constant.JWT_SECRET, {expiresIn: 7200});
         res.status(200).json({
             message: 'Connecté avec succès',
             token: token,
