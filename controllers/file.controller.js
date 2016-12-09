@@ -6,7 +6,7 @@ const constant = require('../config/constant');
 exports.getPicture = (req, res) => {
     if (req.query.url !== undefined && req.query.url !== '') {
       let decoded = jwt.decode(req.query.token);
-      User.findById(decoded.user._id, (err, user) => {
+      User.findById(decoded.id, (err, user) => {
           if (err) {
               return res.status(500).json({
                   title: 'Une erreur est survenue',

@@ -51,7 +51,7 @@ exports.signIn = (req, res) => {
                 error: {message: 'Les identifiants sont incorrects'}
             });
         }
-        let token = jwt.sign({user: user}, constant.JWT_SECRET, {expiresIn: 7200});
+        let token = jwt.sign({id: user._id}, constant.JWT_SECRET, {expiresIn: 7200});
         res.status(200).json({
             message: 'Connecté avec succès',
             token: token,
@@ -61,8 +61,8 @@ exports.signIn = (req, res) => {
 }
 
 exports.getProfile = (req, res) => {
-    let decoded = jwt.decode(req.query.token);
-    User.findOne({_id: decoded.user._id}, {email: 0, password: 0},  (err, user) => {
+
+    User.findById(req.payload.id, {email: 0, password: 0},  (err, user) => {
         if (err) {
             return res.status(500).json({
                 title: 'Impossible de récupèrer les informations utilisateur',
@@ -84,8 +84,7 @@ exports.getProfile = (req, res) => {
 }
 
 exports.updatePassword = (req, res) => {
-    let decoded = jwt.decode(req.query.token);
-    User.findOne({_id: decoded.user._id}, (err, user) => {
+    User.findById(req.payload.id, (err, user) => {
         if (err) {
             return res.status(500).json({
                 title: 'Une erreur est survenue',
@@ -131,8 +130,7 @@ exports.updatePassword = (req, res) => {
 }
 
 exports.updateUser = (req, res) => {
-    let decoded = jwt.decode(req.query.token);
-    User.findOne({_id: decoded.user._id}, {email: 0, password: 0},  (err, user) => {
+    User.findById(req.payload.id, {email: 0, password: 0},  (err, user) => {
         if (err) {
             return res.status(500).json({
                 title: 'Une erreur est survenue',
@@ -268,9 +266,7 @@ exports.resetPassword = (req, res) => {
 }
 
 exports.savePicture = (req, res) => {
-    let decoded = jwt.decode(req.query.token);
-
-    User.findOne({_id: decoded.user._id}, {email: 0, password: 0},  (err, user) => {
+    User.findById(req.payload.id, {email: 0, password: 0},  (err, user) => {
         if (err) {
             return res.status(500).json({
                 title: 'Une erreur est survenue',
@@ -290,8 +286,6 @@ exports.savePicture = (req, res) => {
                 error: {message: 'Impossible de récupèrer l\'image'}
             });
         }
-
-        console.log(req.files.file);
 
         if (req.files.file.mimetype !== 'image/png' && req.files.file.mimetype !== 'image/jpeg') {
            return res.status(500).json({

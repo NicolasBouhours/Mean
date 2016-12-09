@@ -1,4 +1,10 @@
+import { JwtService } from './jwt.service';
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class UploadService {
+
+    constructor(private jwtService: JwtService) {}
 
     uploadFile(file:File, url: string):Promise<any> {
         return new Promise((resolve, reject) => {
@@ -13,10 +19,12 @@ export class UploadService {
                     }
                 }
             };
-            let token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-            url = url.concat(token);
     
             xhr.open('POST', url, true);
+
+            if(this.jwtService.getToken()) {
+                xhr.setRequestHeader('Authorization', `Token ${this.jwtService.getToken()}`);
+            } 
     
             let formData = new FormData();
             formData.append("file", file, file.name);

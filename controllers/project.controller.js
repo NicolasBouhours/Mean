@@ -4,8 +4,7 @@ let Project = require('../models/project');
 
 
 exports.updateProject = (req, res) => {
-  let decoded = jwt.decode(req.query.token);
-  User.findById(decoded.user._id, (err, user) => {
+  User.findById(req.payload.id, (err, user) => {
     if (err) {
         return res.status(500).json({
             title: 'Une erreur est survenue',
@@ -27,7 +26,7 @@ exports.updateProject = (req, res) => {
         });
       }
 
-      if (project.creator != user._id) {
+      if (project.creator.toString() !== user._id.toString()) {
         return res.status(500).json({
             title: 'Impossible, vous n\'êtes pas le créateur de ce tableau',
             error: err
@@ -54,8 +53,7 @@ exports.updateProject = (req, res) => {
 }
 
 exports.getProjects = (req, res) => {
-  let decoded = jwt.decode(req.query.token);
-  User.findById(decoded.user._id).select('_id firstName lastName projects')
+  User.findById(req.payload.id).select('_id firstName lastName projects')
     .populate('projects', '_id name description date creator users').exec((err, projects) => {
     if (err) {
       return res.status(500).json({
@@ -70,8 +68,7 @@ exports.getProjects = (req, res) => {
 }
 
 exports.createProject = (req, res) => {
-  let decoded = jwt.decode(req.query.token);
-  User.findById(decoded.user._id, (err, user) => {
+  User.findById(req.payload.id, (err, user) => {
     if (err) {
         return res.status(500).json({
             title: 'Une erreur est survenue',
@@ -117,8 +114,7 @@ exports.createProject = (req, res) => {
 }
 
 exports.deleteProject = (req, res) => {
-  let decoded = jwt.decode(req.query.token);
-  User.findById(decoded.user._id, (err, user) => {
+  User.findById(req.payload.id, (err, user) => {
     if (err) {
         return res.status(500).json({
             title: 'Une erreur est survenue',
@@ -140,7 +136,7 @@ exports.deleteProject = (req, res) => {
         });
       }
 
-      if (project.creator.toString() != user._id) {
+      if (project.creator.toString() !== user._id.toString()) {
         return res.status(500).json({
             title: 'Impossible, vous n\'êtes pas le créateur de ce tableau',
             error: err

@@ -8,11 +8,6 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var bb = require('express-busboy');
 
-var appRoutes = require('./routes/app');
-var fileRoutes = require('./routes/file');
-var userRoutes = require('./routes/user');
-var projectRoutes = require('./routes/project');
-
 var app = express();
 mongoose.connect('localhost:27017/mean-stack');
 
@@ -41,10 +36,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/project', projectRoutes);
-app.use('/api/file', fileRoutes);
-app.use('/api/user', userRoutes);
-app.use('/', appRoutes);
+app.use(require('./routes'));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

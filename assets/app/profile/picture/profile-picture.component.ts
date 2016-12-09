@@ -26,12 +26,12 @@ export class ProfilePictureComponent {
     }
 
     handleUpload(event) {
-        let url = `${AppSettings.API_ENDPOINT}user/picture`;
         var files = event.srcElement.files;
         if(event.srcElement.files[0] !== undefined) {
             let file: File = event.srcElement.files[0];
             if (file.type === 'image/png' || file.type === 'image/jpeg') {
-                this.uploadService.uploadFile(file, url)
+                console.log('send picture file');
+                this.uploadService.uploadFile(file, `${AppSettings.API_ENDPOINT}user/picture`)
                 .catch((error) => {
                     this.notificationService.handleNotification(error.title, 'danger');
                 }).then((data) => {

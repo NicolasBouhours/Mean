@@ -1,3 +1,4 @@
+import { JwtService } from './../../shared/services/jwt.service';
 import { User } from './../../shared/models/user.models';
 import { AuthService } from './../../shared/services/auth.service';
 import { Component } from '@angular/core';
@@ -16,7 +17,8 @@ export class SigninComponent {
 
     constructor(private authService: AuthService, 
                 private router : Router,
-                private notificationService: NotificationService) { }
+                private notificationService: NotificationService,
+                private jwtService :JwtService) { }
 
     ngOnInit() {
         this.myForm = new FormGroup({
@@ -33,8 +35,8 @@ export class SigninComponent {
         this.authService.signin(user)
             .subscribe(
                 data => {
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('userId', data.userId);
+                    this.jwtService.saveToken(data.token);
+                    this.authService.logUser(data.userId);
                     this.myForm.reset();
                     this.router.navigateByUrl('/');
                 },

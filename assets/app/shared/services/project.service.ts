@@ -1,8 +1,11 @@
+import { ApiService } from './api.service';
 import { Project } from './../models/project.model';
 import { AppSettings } from './../../app.settings';
 import { Observable } from 'rxjs';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ProjectService {
@@ -13,63 +16,42 @@ export class ProjectService {
     projectModalEvent = new EventEmitter<any>();
     deleteProjectEvent = new EventEmitter<Project>();
     
-    constructor(private http: Http) { }
+    constructor(private http: Http,
+        private apiService: ApiService) { }
 
     getProjects() {
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.get(`${AppSettings.API_ENDPOINT}project${token}`)
-        .map((response: Response) => {
-            const projects = response.json().obj.projects;
-            let transformedProjects: Project[] = [];
-            for (let project of projects) {
-                transformedProjects.push(new Project(project.name, project.description, project._id, project.date, project.creator, project.users));
-            }
-            this.projects = transformedProjects;
-            return transformedProjects;
-        }).catch((error: Response) => {
-            return Observable.throw(error.json());
-        });
+        return this.apiService.get('project')
+            .map(data => {
+                const projects = data.obj.projects;
+                let transformedProjects: Project[] = [];
+                for (let project of projects) {
+                    transformedProjects.push(new Project(project.name, project.description, project._id, project.date, project.creator, project.users));
+                }
+                this.projects = transformedProjects;
+                return transformedProjects;
+            });
     }
 
     saveProject(project: Project) {
-        const body = JSON.stringify(project);
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(`${AppSettings.API_ENDPOINT}project${token}`, body, {headers: headers})
-            .map((response: Response) => {
-                const result = response.json();
-                const project = new Project(result.obj.name, result.obj.description, result.obj._id, result.obj.date, localStorage.getItem('userId'), [{}]);
-                this.projects.push(project);
-                return result;
-            })
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+        return this.apiService.post('project', project)
+            .map(data => {
+                    this.projects.push(new Project(data.obj.name, data.obj.description,
+                    data.obj._id, data.obj.date, data.obj.creator._id, data.obj.users));
+                    return data;
+                }
+            );
     }
 
     updateProject(project: Project) {
-        const body = JSON.stringify(project);
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.patch(`${AppSettings.API_ENDPOINT}project/${project.id}${token}`, body, {headers: headers})
-            .map((response: Response) => {
-                return response.json();
-            })
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+        return this.apiService.patch(`project/${project.id}`, project);
     }
 
     deleteProject(project: Project) {
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.delete(`${AppSettings.API_ENDPOINT}project/${project.id}${token}`)
-            .map((response: Response) => {
-                const result = response.json();
+        return this.apiService.delete(`project/${project.id}`)
+            .map(data => {
                 this.projects.splice(this.projects.indexOf(project), 1);
-                return result;
-            })
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+                return data;
+            });
     }
 }

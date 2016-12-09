@@ -1,3 +1,5 @@
+import { JwtService } from './shared/services/jwt.service';
+import { ApiService } from './shared/services/api.service';
 import { UploadService } from './shared/services/upload.service';
 import { ProjectService } from './shared/services/project.service';
 import { GroupService } from './shared/services/group.service';
@@ -34,6 +36,8 @@ import { NotificationComponent } from './shared/notification/notification.compon
         CoreModule
     ],
     providers: [
+        JwtService,
+        ApiService,
         AuthService, 
         NotificationService, 
         ProjectService, 

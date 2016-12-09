@@ -4,7 +4,6 @@ let Project = require('../models/project');
 let User = require('../models/user');
 
 exports.getGroups = (req, res) => {
-
     Project.findById(req.params.projectId).select('_id groups').populate('groups').exec((err, groups) => {
         if (err) {
             return res.status(500).json({
@@ -19,8 +18,7 @@ exports.getGroups = (req, res) => {
 }
 
 exports.createGroup = (req, res) => {
-  let decoded = jwt.decode(req.query.token);
-  User.findById(decoded.user._id, (err, user) => {
+  User.findById(req.payload.id, (err, user) => {
     if (err) {
         return res.status(500).json({
             title: 'Une erreur est survenue',

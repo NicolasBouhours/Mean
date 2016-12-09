@@ -1,3 +1,4 @@
+import { ApiService } from './api.service';
 import { User } from './../models/user.models';
 import { AppSettings } from './../../app.settings';
 import { FormGroup } from '@angular/forms';
@@ -9,89 +10,52 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
 
-    constructor(private http: Http) { }
+    constructor(private http: Http,
+        private apiService: ApiService) { }
 
     info() {
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.get(`${AppSettings.API_ENDPOINT}user/profile${token}`)
-            .map((response: Response) => response.json())
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+        return this.apiService.get('user/profile');
     }
 
     update(user: User) {
-        const body = JSON.stringify(user);
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.patch(`${AppSettings.API_ENDPOINT}user${token}`, body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+        return this.apiService.patch('user', user);
     }
 
     updatePassword(password: string, newPassword: string, newConfirmPassword: string) {
-        const body = JSON.stringify({
+        const body = {
             password: password,
             newPassword: newPassword,
             newConfirmPassword: newConfirmPassword
-        });
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.patch(`${AppSettings.API_ENDPOINT}user/password${token}`, body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+        }
+        return this.apiService.patch('user/password', body);
     }
 
     signup(user: User) {
-        const body = JSON.stringify(user);
-        const headers = new Headers({'Content-Type': 'application/json'});
-        console.log(`${AppSettings.API_ENDPOINT}user`);
-        return this.http.post(`${AppSettings.API_ENDPOINT}user`, body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+        return this.apiService.post('user', user);
     }
 
     signin(user: User) {
-        const body = JSON.stringify(user);
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(`${AppSettings.API_ENDPOINT}user/signin`, body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+        return this.apiService.post('user/signin', user);
     }
 
     forgot(user: User) {
-        const body = JSON.stringify(user);
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(`${AppSettings.API_ENDPOINT}user/forgot`, body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+        return this.apiService.post('user/forgot', user);
     }
 
     reset(password: string, token: string) {
-        const body = JSON.stringify({
+        const body = {
             password: password,
             token: token
-        });
-        const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(`${AppSettings.API_ENDPOINT}user/reset`, body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => {
-                return Observable.throw(error.json());
-        });
+        };
+        return this.apiService.post('user/reset', body);
     }
 
     logout() {
         localStorage.clear();
+    }
+
+    logUser(userId: string) {
+        localStorage.setItem('userId', userId); 
     }
 
     isLoggedIn() {
