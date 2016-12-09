@@ -1,10 +1,10 @@
+import { Group } from './../../../shared/models/group.model';
+import { GroupService } from './../../../shared/services/group.service';
 import { Subscription } from 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationService } from './../../../shared/notification/notification.service';
-import { GroupService } from './../group.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Group } from './../group.model';
 
 @Component({
   selector: 'app-group-modal',

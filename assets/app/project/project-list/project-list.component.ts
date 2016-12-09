@@ -1,5 +1,5 @@
-import { ProjectService } from './../project.service';
-import { Project } from './../project.model';
+import { Project } from './../../shared/models/project.model';
+import { ProjectService } from './../../shared/services/project.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,10 +1,10 @@
+import { User } from './../models/user.models';
+import { AppSettings } from './../../app.settings';
 import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
-import { AppSettings } from './../app.settings';
-import { User } from './user.models';
 
 @Injectable()
 export class AuthService {

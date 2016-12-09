@@ -1,10 +1,9 @@
+import { User } from './../../shared/models/user.models';
+import { AuthService } from './../../shared/services/auth.service';
 import { Component, OnInit, NgZone  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { NotificationService } from './../../shared/notification/notification.service';
-import { AuthService } from './../../auth/auth.service';
-import { User } from './../../auth/user.models';
-import { UploadService } from './../../shared/upload/upload.service';
 
 @Component({
     selector: 'app-profile-info',

@@ -1,8 +1,8 @@
+import { AuthService } from './../../shared/services/auth.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { NotificationService } from './../../shared/notification/notification.service';
-import { AuthService } from './../../auth/auth.service';
 
 @Component({
     selector: 'app-profile-password',

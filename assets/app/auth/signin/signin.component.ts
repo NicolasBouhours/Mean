@@ -1,10 +1,10 @@
+import { User } from './../../shared/models/user.models';
+import { AuthService } from './../../shared/services/auth.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../auth.service';
 import { NotificationService } from './../../shared/notification/notification.service';
-import { User } from '../user.models';
 
 @Component({
     selector: 'app-signin',

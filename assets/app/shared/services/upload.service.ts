@@ -1,4 +1,3 @@
-
 export class UploadService {
 
     uploadFile(file:File, url: string):Promise<any> {

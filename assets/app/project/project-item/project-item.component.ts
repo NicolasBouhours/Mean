@@ -1,6 +1,6 @@
+import { Project } from './../../shared/models/project.model';
+import { ProjectService } from './../../shared/services/project.service';
 import { Router } from '@angular/router';
-import { ProjectService } from './../project.service';
-import { Project } from './../project.model';
 import { Component, Input } from '@angular/core';
 
 @Component({

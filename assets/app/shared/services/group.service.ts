@@ -1,8 +1,8 @@
+import { Group } from './../models/group.model';
 import { Observable } from 'rxjs';
 import { AppSettings } from './../../app.settings';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Group } from './group.model';
 
 @Injectable()
 export class GroupService {

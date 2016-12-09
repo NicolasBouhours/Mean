@@ -1,6 +1,6 @@
+import { Group } from './../../../shared/models/group.model';
+import { GroupService } from './../../../shared/services/group.service';
 import { Router } from '@angular/router';
-import { GroupService } from './../group.service';
-import { Group } from './../group.model';
 import { Component, Input } from '@angular/core';
 
 @Component({

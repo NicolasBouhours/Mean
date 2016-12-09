@@ -1,7 +1,7 @@
-import { Group } from './../group.model';
+import { Group } from './../../../shared/models/group.model';
+import { GroupService } from './../../../shared/services/group.service';
 import { Subscription } from 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router';
-import { GroupService } from './../group.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({

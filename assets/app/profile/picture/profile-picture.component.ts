@@ -1,8 +1,8 @@
+import { AuthService } from './../../shared/services/auth.service';
+import { UploadService } from './../../shared/services/upload.service';
 import { Component, OnInit, NgZone  } from '@angular/core';
 import { AppSettings } from './../../app.settings';
 import { NotificationService } from './../../shared/notification/notification.service';
-import { AuthService } from './../../auth/auth.service';
-import { UploadService } from './../../shared/upload/upload.service';
 
 @Component({
     selector: 'app-profile-picture',

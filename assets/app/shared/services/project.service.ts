@@ -1,8 +1,8 @@
+import { Project } from './../models/project.model';
+import { AppSettings } from './../../app.settings';
 import { Observable } from 'rxjs';
-import { AppSettings } from './../app.settings';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Project } from './project.model';
 
 @Injectable()
 export class ProjectService {

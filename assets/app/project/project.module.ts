@@ -6,7 +6,6 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
 
 import { projectRoutes } from './project.routing';
-import { ProjectService } from './project.service';
 import { ProjectContainerComponent } from './project-container/project-container.component';
 import { ProjectItemComponent } from './project-item/project-item.component';
 import { ProjectModalComponent } from './project-modal/project-modal.component';

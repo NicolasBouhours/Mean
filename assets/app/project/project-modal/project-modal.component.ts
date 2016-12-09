@@ -1,8 +1,8 @@
+import { Project } from './../../shared/models/project.model';
+import { ProjectService } from './../../shared/services/project.service';
 import { NotificationService } from './../../shared/notification/notification.service';
-import { ProjectService } from './../project.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Project } from './../project.model';
 
 @Component({
   selector: 'app-project-modal',

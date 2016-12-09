@@ -1,6 +1,6 @@
-import { ProjectService } from './../project.service';
+import { Project } from './../../shared/models/project.model';
+import { ProjectService } from './../../shared/services/project.service';
 import { NotificationService } from './../../shared/notification/notification.service';
-import { Project } from './../project.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
