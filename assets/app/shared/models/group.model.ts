@@ -1,4 +1,14 @@
 import { Task } from './task.model';
 export class Group {
-    constructor(public name: string, public id?: string, public rank?: number, public active?: boolean, public tasks?: Task[]) {}
+    id: string;
+    name: string;
+    date: string;
+    active: boolean;
+    creator: string;
+    deleter: string;
+    project: any;
+    tasks: any[];
+
+    constructor(name: string, id?: string, rank?: number, active?: boolean, tasks?: Task[]) {
+    }
 }

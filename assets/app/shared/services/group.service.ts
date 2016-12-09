@@ -19,36 +19,17 @@ export class GroupService {
         private apiService: ApiService) { }
 
     getGroups() {
-        /*const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.get(`${AppSettings.API_ENDPOINT}project/${this.projectId}/group${token}`)
-        .map((response: Response) => {
-            const groups = response.json().obj.groups;
-            let transformedGroups: Group[] = [];
-            for (let group of groups) {
-                transformedGroups.push(new Group(group.name, group._id, group.rank, group.active, []));
-            }
-            this.groups = transformedGroups;
-            return transformedGroups;
-        }).catch((error: Response) => {
-            return Observable.throw(error.json());
-        });*/
         return this.apiService.get(`project/${this.projectId}/group`)
             .map(data => {
-                const groups = data.obj.groups;
-                let transformedGroups: Group[] = [];
-                for (let group of groups) {
-                    transformedGroups.push(new Group(group.name, group._id, group.rank, group.active, []));
-                }
-                this.groups = transformedGroups;
-                return transformedGroups;  
+                this.groups = data.obj.groups;
+                return this.groups;  
             });
     } 
 
     saveGroup(group: Group) {
         return this.apiService.post(`project/${this.projectId}/group`, group)
             .map(data => {
-                const group = new Group(data.obj.name, data.obj._id, data.obj.rank, true, []);
-                this.groups.push(group);
+                this.groups.push(new Group(data.obj));
                 return data;
             });
     }

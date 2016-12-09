@@ -23,21 +23,15 @@ export class ProjectService {
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
         return this.apiService.get('project')
             .map(data => {
-                const projects = data.obj.projects;
-                let transformedProjects: Project[] = [];
-                for (let project of projects) {
-                    transformedProjects.push(new Project(project.name, project.description, project._id, project.date, project.creator, project.users));
-                }
-                this.projects = transformedProjects;
-                return transformedProjects;
+                this.projects = data.obj.projects;
+                return this.projects;
             });
     }
 
     saveProject(project: Project) {
         return this.apiService.post('project', project)
             .map(data => {
-                    this.projects.push(new Project(data.obj.name, data.obj.description,
-                    data.obj._id, data.obj.date, data.obj.creator._id, data.obj.users));
+                    this.projects.push(new Project(data));
                     return data;
                 }
             );
