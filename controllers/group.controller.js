@@ -18,6 +18,7 @@ exports.getGroups = (req, res) => {
 }
 
 exports.createGroup = (req, res) => {
+
   User.findById(req.payload.id, (err, user) => {
     if (err) {
         return res.status(500).json({
@@ -38,6 +39,12 @@ exports.createGroup = (req, res) => {
                 title: 'Impossible de sauvegarder le groupe',
                 error: err
             });
+        }
+        if(!project) {
+            return res.status(500).json({
+                title: 'Impossible de sauvegarder le groupe',
+                error: err
+            });  
         }
 
 

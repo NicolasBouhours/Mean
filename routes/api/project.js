@@ -10,8 +10,8 @@ router.post('/', auth.required, ProjectController.createProject);
 router.patch('/:id', auth.required, ProjectController.updateProject);
 router.delete('/:id', auth.required, ProjectController.deleteProject);
 
-router.get('/:projectId/group', auth.required, GroupController.getGroups);
+/*router.get('/:projectId/group', auth.required, GroupController.getGroups);
 router.post('/:projectId/group', auth.required, GroupController.createGroup);
-router.patch('/:projectId/group/:id', auth.required, GroupController.updateGroup);
+router.patch('/:projectId/group/:id', auth.required, GroupController.updateGroup);*/
 
 module.exports = router;
