@@ -1,7 +1,9 @@
+import { MenuSettingComponent } from './../menu/menu-setting/menu-setting.component';
+import { MenuTitleComponent } from './../shared/menu/menu-title/menu-title.component';
+import { MenuComponent } from './../menu/menu.component';
 import { DropdownComponent } from './../shared/dropdown/dropdown.component';
 import { ProjectResolver } from './project-resolver';
 import { GroupItemComponent } from './group/group-item/group-item.component';
-import { GroupModalComponent } from './group/group-modal/group-modal.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared/shared.module';
@@ -22,7 +24,10 @@ import { ProjectConfirmDeleteComponent } from './project-confirm-delete/project-
     ProjectConfirmDeleteComponent,
     ProjectDetailComponent,
     GroupItemComponent,
-
+  
+    MenuComponent,
+    MenuTitleComponent,
+    MenuSettingComponent,
     DropdownComponent
   ],
   imports: [

@@ -1,3 +1,4 @@
+import { MenuService } from './menu/menu.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { JwtService } from './shared/services/jwt.service';
 import { ApiService } from './shared/services/api.service';
@@ -43,6 +44,7 @@ import { NotificationComponent } from './shared/notification/notification.compon
         ProjectService, 
         GroupService, 
         UploadService,
+        MenuService,
         AuthGuard
     ],
     bootstrap: [AppComponent]

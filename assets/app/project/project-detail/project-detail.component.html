@@ -1,204 +1,27 @@
-<div class="columns full-height">
+<div class="columns full-height project-detail-page">
   <div id="project-detail" class="column">
-    <h4 id="project-name" class="title is-4">{{project.name}}</h4>
-      <div class="project-list columns">
-        <app-group-item *ngFor="let group of project.groups" [group]="group"></app-group-item>
-        <div class="is-3">
-          <form [formGroup]="formAddGroup"> 
-            <input type="text" id="input-add-group" (change)="onCreateGroup()" formControlName="name" placeholder="Ajouter un groupe ...">
-          </form>
+    <div class="columns">
+      <div class="column is-8">
+        <h4 id="project-name" class="title is-4">{{project.name}}</h4>
+      </div>
+      <div id="show-menu-container" class="column is-4">
+        <div id="show-menu-group" (click)="onOpenMenu()">
+          <span class="icon icon-show-menu">
+            <i class="fa fa-bars" id="icon-show-menu-bars"></i>
+          </span>
+          Afficher le menu
         </div>
       </div>
+    </div>
+    <div class="project-list columns">
+      <app-group-item *ngFor="let group of project.groups" [group]="group"></app-group-item>
+      <div class="is-3">
+        <form [formGroup]="formAddGroup"> 
+          <input type="text" id="input-add-group" (change)="onCreateGroup()" formControlName="name" placeholder="Ajouter un groupe ...">
+        </form>
+      </div>
+    </div>
     <br>
   </div>
-  <div id="menu" class="column is-narrow"> 
-    <div class="columns">
-      <div  id="menu-title" class="column is-12 has-text-centered">
-        Menu
-        <span class="icon menu-icon-close">
-          <i class="fa fa-close"></i>
-        </span>
-      </div>
-    </div>
-
-    <hr>
-
-    <div id="menu-users-list" class="columns">
-      <span class="tag is-info">NB</span>
-      <span class="tag is-info">SB</span>
-    </div>
-    <div id="menu-users-add-button" class="columns">
-      <a class="button is-light">
-        <span class="icon menu-icon-add-user">
-          <i class="fa fa-user-plus"></i>
-        </span>
-        Ajouter des utilisateurs
-      </a>
-    </div>
-
-    <hr>
-
-    <div id="menu-options-list">
-      <div class="menu-option">
-        <span class="icon">
-          <i class="fa fa-paint-brush"></i>
-        </span>
-        Changer le fond d'écran <br/>
-      </div>
-      <div class="menu-option">
-        <span class="icon">
-          <i class="fa fa-filter"></i>
-        </span>
-        Filtrer les cartes <br/>
-      </div>
-      <div class="menu-option">
-        <span class="icon">
-          <i class="fa fa-paper-plane"></i>
-        </span>
-        Power-Ups <br/>
-      </div>
-      <div class="menu-option">
-        <span class="icon">
-          <i class="fa fa-paper-plane"></i>
-        </span>
-        Stickers <br/>
-      </div>
-      <div class="menu-option">
-        <span class="icon">
-          <i class="fa fa-ellipsis-h"></i>
-        </span>
-        Plus
-      </div>
-    </div>
-    <hr>
-
-    <div id="menu-activity">
-      <div class="menu-option menu-activity-label">
-        <span class="icon">
-          <i class="fa fa-newspaper-o"></i>
-        </span>
-        Activités
-      </div>
-
-      <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">NB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-      <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">NB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-      <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">NB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-      <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">NB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-      <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">NB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-            <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">NB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-      <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">NB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-      <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">SB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-      <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">SB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-      <div class="activity columns">
-        <div class="menu-activity-label column is-narrow">
-          <span class="tag is-info">SB</span>
-        </div>
-        <div class="menu-activity-content column">
-          <span class="menu-activity-user">Nicolas Bouhours</span>
-          <span class="menu-activity-text"> a ajouté Project cuisine a ce tableau</span>
-          <span class="menu-activity-time"> - Il y a deux heures</span>
-        </div>
-      </div>
-
-      <div class="activity columns activity-loadmore">
-          <a class="button is-light">
-            <span class="icon menu-icon-add-user">
-              <i class="fa fa-refresh"></i>
-            </span>
-            Afficher toutes les activitées
-          </a>
-      </div>
-
-    </div>
-  </div>
+  <app-menu></app-menu>
 </div>

@@ -1,0 +1,55 @@
+#menu-users-list {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#menu-users-list .tag {
+    margin: 2px;
+}
+
+#menu-users-add-button a {
+    width: 100%;
+    margin: 4px;
+}
+
+.menu-icon-add-user {
+    color: grey;
+    margin: 2px;
+    font-size: 12px;
+}
+
+#menu-options-list .icon, #menu-activity .icon {
+    color: grey;
+    font-size: 13px;
+}
+
+.menu-acivity-content {
+    width: 20px;
+}
+
+.menu-acivity-content  {
+    width: 100%;
+}
+
+.menu-activity-content .menu-activity-user {
+    font-weight: 500;
+}
+
+.menu-activity-content .menu-activity-text {
+    font-weight: normal;
+}
+
+.menu-activity-content .menu-activity-time {
+    font-weight: normal;
+    font-size: 12px;
+    color: grey;
+}
+
+.activity-loadmore a {
+    width: 100%;
+}
+
+.menu-activity-label {
+    margin-bottom: 25px;
+    margin-top: 10px;
+}

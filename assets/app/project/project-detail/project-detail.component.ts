@@ -1,3 +1,4 @@
+import { MenuService } from './../../menu/menu.service';
 import { Group } from './../../shared/models/group.model';
 import { GroupService } from './../../shared/services/group.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -17,7 +18,8 @@ export class ProjectDetailComponent implements OnInit {
   formAddGroup: FormGroup;
 
   constructor(private projectService: ProjectService,
-    private groupService: GroupService) {}
+    private groupService: GroupService,
+    private menuService: MenuService) {}
 
   ngOnInit() {
     this.project = this.projectService.getSelectedProject();
@@ -33,6 +35,10 @@ export class ProjectDetailComponent implements OnInit {
       this.projectService.addGroup(group);
       this.formAddGroup.reset();
     }
+  }
+
+  onOpenMenu() {
+    this.menuService.menuEvent.emit(true);
   }
 
 }
