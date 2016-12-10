@@ -1,19 +1,21 @@
 <div class="card is-3">
-  <header class="card-header">
-    <div class="card-header-title">
-        <h1>{{ group.name}}</h1>
-    </div>
-  </header>
-  <div class="card-content">
-    <div class="content">
+  <form [formGroup]="myForm">
+    <header class="card-header">
+      <div class="card-header-title">
+          <input class="group-name" (change)="onChangeName()" type="text" formControlName="name">
+      </div>
+      <a class="card-header-icon">
+        <i class="icon-options fa fa-ellipsis-h"></i>
+      </a>
+    </header>
+    <div class="card-content">
+      <div class="content">
 
-      <br>
+        <br>
+      </div>
     </div>
-  </div>
-  <footer class="card-footer">
+    <footer class="card-footer">
 
-    <a class="card-header-icon">
-      <i class="edit-icon fa fa-edit"></i>
-    </a>
-  </footer>
+    </footer>
+  </form>
 </div>

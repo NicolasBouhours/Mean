@@ -1,18 +1,15 @@
 .card {
     margin: 5px;
+    background-color: #E2E4E6;
+    border-radius: 3px;
 }
 
 .card-header {
-    background-color: whitesmoke;
+    box-shadow: initial;
 }
 
-.card-content {
-    background-color: whitesmoke;
-}
-
-.card-header-title h1{
-    color:#4a4a4a;
-    font-weight: bold;
+.card-footer {
+    border-top: none;
 }
 
 .remove-icon {
@@ -20,7 +17,19 @@
     font-size: 13px;
 }
 
-.edit-icon {
-    color: #292929;
-    font-size: 15px;
+.icon-options {
+    color:grey;
+    font-size: 12px;
+}
+
+.group-name {
+    background-color: #E2E4E6;
+    border: none;
+    color:#4a4a4a;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.group-name:focus {
+    background-color: whitesmoke;
 }

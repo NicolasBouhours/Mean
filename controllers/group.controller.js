@@ -98,7 +98,7 @@ exports.updateGroup = (req, res) => {
             }
 
             res.status(201).json({
-                message: 'Groupe ajouté avec succès',
+                message: 'Groupe mis à jour avec succès',
                 obj: savedGroup
             });
         });
