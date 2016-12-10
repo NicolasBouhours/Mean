@@ -44,3 +44,20 @@ html, body {
     margin: 8px;
 }
 
+#menu .tag {
+background-color: #ed7f6e;
+}
+
+#menu .button {
+  border: 1px solid #d1d2d4
+}
+
+
+/*
+#d1d2d4 (gris)
+#f3f3f5 (blanc)
+#ec7e6e (orange)
+#f6be61 (jaune)
+#282f39 (bleu foncé)
+#7dcad0 (bleu clair)
+*/
