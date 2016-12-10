@@ -35,11 +35,11 @@ export class GroupService {
     }
 
     updateGroup(group: Group) {
-        return this.apiService.patch(`project/${this.projectId}/group/${group.id}`, group);
+        return this.apiService.patch(`project/${this.projectId}/group/${group._id}`, group);
     }
 
     deleteGroup(group: Group) {
-        return this.apiService.delete(`project/${this.projectId}/group/${group.id}`)
+        return this.apiService.delete(`project/${this.projectId}/group/${group._id}`)
             .map(data => { 
                 this.groups.splice(this.groups.indexOf(group), 1);
                 return data;

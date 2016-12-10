@@ -13,7 +13,6 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 export class GroupModalComponent implements OnInit {
     myForm: FormGroup;
     isModalActive: string = '';
-    isEdit: boolean = false;
     modalClass = 'modal';
     group: Group;
 
@@ -30,15 +29,6 @@ export class GroupModalComponent implements OnInit {
           (obj: any) => {
             if (obj.isOpen) {
               this.onOpen();
-              if(!obj.isAdd) {
-                this.isEdit = true;
-                this.group = obj.group;
-                this.myForm.controls['name'].setValue(obj.group.name);
-              }
-              else {
-                this.isEdit = false;
-                this.myForm.reset();
-              }
             } else {
               this.onClose();
             }
@@ -56,30 +46,16 @@ export class GroupModalComponent implements OnInit {
     }
 
     onSubmit() {
-      if(!this.isEdit) {
-        const group = new Group(this.myForm.value.name);
-        this.groupService.saveGroup(group)
-          .subscribe(
-            (data) => {
-              this.onClose();
-              this.notificationService.handleNotification(data.message, 'primary');
-              this.myForm.reset();
-            },  
-            (error) => this.notificationService.handleNotification(error.title, 'danger')
-          );
-      } else {
-        const group = new Group(this.myForm.value.name, this.group.id);
-        this.groupService.updateGroup(group)
-          .subscribe(
-            (data) => {
-              this.onClose();
-              this.notificationService.handleNotification(data.message, 'primary');
-              this.group.name = group.name;
-              this.myForm.reset();
-            },  
-            (error) => this.notificationService.handleNotification(error.title, 'danger')
-          );
-      }
+      const group = new Group(this.myForm.value.name);
+      this.groupService.saveGroup(group)
+        .subscribe(
+          (data) => {
+            this.onClose();
+            this.notificationService.handleNotification(data.message, 'primary');
+            this.myForm.reset();
+          },  
+          (error) => this.notificationService.handleNotification(error.title, 'danger')
+        );
     }
 
 }

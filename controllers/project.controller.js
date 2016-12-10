@@ -67,6 +67,20 @@ exports.getProjects = (req, res) => {
   });
 }
 
+exports.getProject = (req, res) => {
+  Project.findById(req.params.id).populate('groups').exec((err, project) => {
+    if (err) {
+      return res.status(500).json({
+        title: 'Une erreur est survenue',
+        error: err
+      });
+    }
+    res.status(201).json({
+      obj: project
+    });
+  });
+}
+
 exports.createProject = (req, res) => {
   User.findById(req.payload.id, (err, user) => {
     if (err) {

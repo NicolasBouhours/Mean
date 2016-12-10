@@ -1,20 +1,12 @@
+import { Group } from './group.model';
 export class Project {
-    id: string;
+    _id: string;
     name: string;
-    descripiton: string;
+    description: string;
     date: string;
     creator: string;
     users: any[];
-    groups: any[];
+    groups: Group[];
 
-    constructor(name: string, description?: string, id?: string, date?: string, creator?: string,users?: any[]) {}
+    constructor(name: string, description?: string, _id?: string, date?: string, creator?: string,users?: any[]) {}
 }
-
-/*
-    name: {type: String, required: true},
-    description: {type: String},
-    date: {type: Date, default: Date.now},
-    creator: {type: Schema.Types.ObjectId, ref: 'User'},
-    users: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    groups: [{type: Schema.Types.ObjectId, ref: 'Group'}]
-*/

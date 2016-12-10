@@ -14,12 +14,4 @@ export class GroupItemComponent {
   constructor(private groupService: GroupService,
     private router: Router) {}
 
-  onEditGroup() {
-      this.groupService.groupModalEvent.emit({
-        isOpen: true,
-        isAdd: false,
-        group: this.group
-      });
-  }
-
 }

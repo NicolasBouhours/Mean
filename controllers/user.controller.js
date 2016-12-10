@@ -62,7 +62,7 @@ exports.signIn = (req, res) => {
 
 exports.getProfile = (req, res) => {
 
-    User.findById(req.payload.id, {email: 0, password: 0},  (err, user) => {
+    User.findById(req.payload.id, (err, user) => {
         if (err) {
             return res.status(500).json({
                 title: 'Impossible de récupèrer les informations utilisateur',
@@ -78,7 +78,7 @@ exports.getProfile = (req, res) => {
 
         res.status(200).json({
             message: 'Informations récupèrées avec succès',
-            obj: user
+            obj: user.toProfileJSON(user)
         });
     });
 }
@@ -130,7 +130,7 @@ exports.updatePassword = (req, res) => {
 }
 
 exports.updateUser = (req, res) => {
-    User.findById(req.payload.id, {email: 0, password: 0},  (err, user) => {
+    User.findById(req.payload.id, (err, user) => {
         if (err) {
             return res.status(500).json({
                 title: 'Une erreur est survenue',
@@ -266,7 +266,7 @@ exports.resetPassword = (req, res) => {
 }
 
 exports.savePicture = (req, res) => {
-    User.findById(req.payload.id, {email: 0, password: 0},  (err, user) => {
+    User.findById(req.payload.id,  (err, user) => {
         if (err) {
             return res.status(500).json({
                 title: 'Une erreur est survenue',

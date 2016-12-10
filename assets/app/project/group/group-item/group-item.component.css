@@ -2,10 +2,6 @@
     margin: 5px;
 }
 
-.card:first-child {
-    margin-left: 25px;
-}
-
 .card-header {
     background-color: whitesmoke;
 }

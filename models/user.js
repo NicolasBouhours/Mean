@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 let mongooseUniqueValidator = require('mongoose-unique-validator');
 
-let schema = new Schema({
+let userSchema = new Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     password: {type: String, required: true},
@@ -13,6 +13,14 @@ let schema = new Schema({
     resetPasswordExpires: Date
 });
 
-schema.plugin(mongooseUniqueValidator);
+userSchema.plugin(mongooseUniqueValidator);
 
-module.exports = mongoose.model('User', schema);
+userSchema.methods.toProfileJSON = (user) => {
+    return {
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName
+    };
+}
+
+module.exports = mongoose.model('User', userSchema);

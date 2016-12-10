@@ -11,6 +11,7 @@ import 'rxjs/add/operator/catch';
 export class ProjectService {
     //Data
     private projects: Project[] = [];
+    private selectedProject: Project;
 
     //Events
     projectModalEvent = new EventEmitter<any>();
@@ -28,6 +29,15 @@ export class ProjectService {
             });
     }
 
+    getProject(id) {
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        return this.apiService.get(`project/${id}`)
+            .map(data => {
+                this.selectedProject = data.obj;
+                return this.selectedProject;
+            });
+    }
+
     saveProject(project: Project) {
         return this.apiService.post('project', project)
             .map(data => {
@@ -38,14 +48,22 @@ export class ProjectService {
     }
 
     updateProject(project: Project) {
-        return this.apiService.patch(`project/${project.id}`, project);
+        return this.apiService.patch(`project/${project._id}`, project);
     }
 
     deleteProject(project: Project) {
-        return this.apiService.delete(`project/${project.id}`)
+        return this.apiService.delete(`project/${project._id}`)
             .map(data => {
                 this.projects.splice(this.projects.indexOf(project), 1);
                 return data;
             });
+    }
+
+    setSelectedProject(project: any) {
+        this.selectedProject = project;
+    }
+
+    getSelectedProject() {
+        return this.selectedProject;
     }
 }

@@ -1,3 +1,12 @@
 <div id="project-detail">
-  <app-group-container></app-group-container>
+  <h4 id="project-name" class="title is-4">{{project.name}}</h4>
+    <div class="project-list columns">
+      <app-group-item *ngFor="let group of project.groups" [group]="group"></app-group-item>
+    </div>
+
+  <br>
+  <div class="project-button">
+    <a class="button is-primary" (click)="onOpenModal()">Ajouter un groupe</a>
+  </div>
+  <app-group-modal></app-group-modal>
 </div>

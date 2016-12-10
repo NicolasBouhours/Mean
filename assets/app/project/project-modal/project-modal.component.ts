@@ -68,7 +68,7 @@ export class ProjectModalComponent implements OnInit {
             (error) => this.notificationService.handleNotification(error.title, 'danger')
           );
       } else {
-        const project = new Project(this.myForm.value.name, this.myForm.value.description, this.project.id);
+        const project = new Project(this.myForm.value.name, this.myForm.value.description, this.project._id);
         this.projectService.updateProject(project)
           .subscribe(
             (data) => {

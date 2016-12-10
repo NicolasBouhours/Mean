@@ -27,7 +27,8 @@ export class ProjectItemComponent {
   }
 
   onDetail() {
-    this.router.navigate(['/project', this.project.id]);
+    this.projectService.setSelectedProject(this.project);
+    this.router.navigate(['/project', this.project._id]);
   }
 
   belongToUser() {

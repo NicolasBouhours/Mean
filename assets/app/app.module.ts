@@ -1,3 +1,4 @@
+import { AuthGuard } from './shared/guards/auth.guard';
 import { JwtService } from './shared/services/jwt.service';
 import { ApiService } from './shared/services/api.service';
 import { UploadService } from './shared/services/upload.service';
@@ -12,7 +13,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 
 import { NotificationService } from './shared/notification/notification.service';
-import { CanActivateViaAuthGuard } from './auth/auth.guard';
 
 import { CoreModule } from './core/core.module';
 
@@ -43,7 +43,8 @@ import { NotificationComponent } from './shared/notification/notification.compon
         ProjectService, 
         GroupService, 
         UploadService,
-        CanActivateViaAuthGuard],
+        AuthGuard
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

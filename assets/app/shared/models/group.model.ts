@@ -1,6 +1,6 @@
 import { Task } from './task.model';
 export class Group {
-    id: string;
+    _id: string;
     name: string;
     date: string;
     active: boolean;
@@ -9,6 +9,6 @@ export class Group {
     project: any;
     tasks: any[];
 
-    constructor(name: string, id?: string, rank?: number, active?: boolean, tasks?: Task[]) {
+    constructor(name: string, _id?: string, rank?: number, active?: boolean, tasks?: Task[]) {
     }
 }
