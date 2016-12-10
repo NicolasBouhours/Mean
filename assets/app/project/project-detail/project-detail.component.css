@@ -1,8 +1,121 @@
 #project-detail {
     background-color: #4BBF6B;
     height: 100%;
+    overflow-y: auto;
 }
 
 #project-name {
     font-weight: 500;
+}
+
+#input-add-group{
+    min-height: 40px;
+    width: 250px;
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(0,0,0,.15);
+    color: white;
+    border: none;
+}
+
+#input-add-group::-webkit-input-placeholder{
+    color: whitesmoke;
+}
+
+
+#project-detail, #menu {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#menu {
+    width: 300px;
+    font-weight: 500;
+    overflow-y: auto;
+}
+
+#menu #menu-title {
+    font-size: 18px;
+    margin: 10px;
+    position: relative;
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+
+#menu #menu-title .menu-icon-close {
+    position: absolute;
+    right: 0;
+    font-size: 19px;
+    color: grey;
+    margin-right: 30px;
+}
+
+#menu .column {
+    padding: 0px 10px 10px 0px;
+}
+
+#menu hr {
+    margin: 5px;
+}
+
+
+#menu #menu-users-list {
+    padding: 10px;
+}
+
+#menu #menu-users-list .tag {
+    margin: 2px;
+}
+
+#menu #menu-users-add-button a {
+    width: 100%;
+    margin: 4px;
+}
+
+#menu .menu-icon-add-user {
+    color: grey;
+    margin: 2px;
+    font-size: 12px;
+}
+
+#menu #menu-options-list .icon, #menu #menu-activity .icon {
+    color: grey;
+    font-size: 13px;
+}
+
+#menu .menu-option {
+    margin: 5px;
+}
+
+#menu .menu-acivity-content {
+    width: 20px;
+}
+
+#menu .menu-acivity-content  {
+    width: 100%;
+}
+
+#menu .menu-activity-content .menu-activity-user {
+    font-weight: 500;
+}
+
+#menu .menu-activity-content .menu-activity-text {
+    font-weight: normal;
+}
+
+#menu .menu-activity-content .menu-activity-time {
+    font-weight: normal;
+    font-size: 12px;
+    color: grey;
+}
+
+#menu .menu-activity-label {
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+#menu .activity {
+    margin-left: 10px;
+    margin-right: 10px;
 }

@@ -33,3 +33,10 @@
 .group-name:focus {
     background-color: whitesmoke;
 }
+
+.button-add-task {
+    color: #8c8c8c;
+    margin: 10px;
+    font-size: 15px;
+    font-weight: 500;
+}

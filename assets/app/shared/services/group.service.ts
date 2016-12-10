@@ -7,10 +7,9 @@ import { Http, Headers, Response } from '@angular/http';
 
 @Injectable()
 export class GroupService {
-    //Data
-    private groups: Group[] = [];
-    private projectId: string = '';
 
+    projectId: string;
+    
     //Events
     groupModalEvent = new EventEmitter<any>();
     deleteGroupEvent = new EventEmitter<Group>();
@@ -19,19 +18,11 @@ export class GroupService {
         private apiService: ApiService) { }
 
     getGroups() {
-        return this.apiService.get(`project/${this.projectId}/group`)
-            .map(data => {
-                this.groups = data.obj.groups;
-                return this.groups;  
-            });
+        return this.apiService.get(`project/${this.projectId}/group`);
     } 
 
     saveGroup(group: Group) {
-        return this.apiService.post(`project/${this.projectId}/group`, group)
-            .map(data => {
-                this.groups.push(new Group(data.obj));
-                return data;
-            });
+        return this.apiService.post(`project/${this.projectId}/group`, group);
     }
 
     updateGroup(group: Group) {
@@ -39,11 +30,7 @@ export class GroupService {
     }
 
     deleteGroup(group: Group) {
-        return this.apiService.delete(`project/${this.projectId}/group/${group._id}`)
-            .map(data => { 
-                this.groups.splice(this.groups.indexOf(group), 1);
-                return data;
-            });
+        return this.apiService.delete(`project/${this.projectId}/group/${group._id}`);
     }
 
     setProjectId(id: string) {

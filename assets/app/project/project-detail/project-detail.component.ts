@@ -1,3 +1,6 @@
+import { Group } from './../../shared/models/group.model';
+import { GroupService } from './../../shared/services/group.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from './../../shared/models/project.model';
 import { ProjectService } from './../../shared/services/project.service';
@@ -11,16 +14,25 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProjectDetailComponent implements OnInit {
   
   project: Project;
+  formAddGroup: FormGroup;
 
   constructor(private projectService: ProjectService,
-    private route: ActivatedRoute) {}
+    private groupService: GroupService) {}
 
   ngOnInit() {
-    this.route.data.subscribe(
-      (data: {project: Project}) => {
-        this.project = data.project;
-      }
-    );
+    this.project = this.projectService.getSelectedProject();
+
+    this.formAddGroup = new FormGroup({
+      name: new FormControl(null, Validators.required)
+    });
+  }
+
+  onCreateGroup() {
+    if(this.formAddGroup.valid) {
+      const group = new Group(this.formAddGroup.value.name);
+      this.projectService.addGroup(group);
+      this.formAddGroup.reset();
+    }
   }
 
 }

@@ -1,0 +1,20 @@
+ <div>
+    <a (click)="openDropdown()"><i class="icon-options fa fa-ellipsis-h"></i></a>
+    <ul class="dropdown dropdown-group-options" *ngIf="isActive">
+        <li class="columns">
+        <div class="column is-10">
+            <h4 class="dropdown-title is-8"> Actions </h4>
+        </div>
+        <div class="column is-2">
+            <span class="icon">
+            <a (click)="closeDropdown()"><i class="close-dropdown fa fa-close"></i></a>
+            </span>
+        </div>
+        </li>
+        <hr>
+        <div *ngFor="let dropdown of dropdowns">
+             <hr *ngIf="dropdown.separator">
+            <li (click)="dropdown.onClick()">{{dropdown.name}}</li>
+        </div>
+    </ul>
+</div>

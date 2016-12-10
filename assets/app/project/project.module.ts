@@ -1,3 +1,4 @@
+import { DropdownComponent } from './../shared/dropdown/dropdown.component';
 import { ProjectResolver } from './project-resolver';
 import { GroupItemComponent } from './group/group-item/group-item.component';
 import { GroupModalComponent } from './group/group-modal/group-modal.component';
@@ -20,9 +21,9 @@ import { ProjectConfirmDeleteComponent } from './project-confirm-delete/project-
     ProjectModalComponent,
     ProjectConfirmDeleteComponent,
     ProjectDetailComponent,
+    GroupItemComponent,
 
-    GroupModalComponent,
-    GroupItemComponent
+    DropdownComponent
   ],
   imports: [
     SharedModule,

@@ -1,3 +1,6 @@
+import { NotificationService } from './../notification/notification.service';
+import { Group } from './../models/group.model';
+import { GroupService } from './group.service';
 import { ApiService } from './api.service';
 import { Project } from './../models/project.model';
 import { AppSettings } from './../../app.settings';
@@ -18,7 +21,9 @@ export class ProjectService {
     deleteProjectEvent = new EventEmitter<Project>();
     
     constructor(private http: Http,
-        private apiService: ApiService) { }
+        private apiService: ApiService,
+        private groupService: GroupService,
+        private notificationService: NotificationService) { }
 
     getProjects() {
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
@@ -65,5 +70,14 @@ export class ProjectService {
 
     getSelectedProject() {
         return this.selectedProject;
+    }
+
+
+    // GROUP Methods
+    addGroup(group: Group) {
+        this.groupService.saveGroup(group).subscribe(
+            (data) => this.selectedProject.groups.push(data.obj),
+            (error) => this.notificationService.handleNotification(error.title, 'danger')
+        );
     }
 }
