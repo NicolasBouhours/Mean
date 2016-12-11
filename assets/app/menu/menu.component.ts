@@ -24,6 +24,7 @@ import { Component, OnInit, trigger, state, transition, animate, style, ElementR
 })
 export class MenuComponent implements OnInit {
     isActive: boolean = false;
+    isActivatedNow: boolean = false;
     state = 'hidden';
     constructor(private menuService: MenuService,
         private _eref: ElementRef) {}
@@ -34,6 +35,10 @@ export class MenuComponent implements OnInit {
                 this.isActive = data;
                 if(data) {
                      this.state = 'show';
+                     this.isActivatedNow = true;
+                     setTimeout(()=>{
+                        this.isActivatedNow = false;
+                    }, 50);
                 } else {
                     this.state = 'hidden';
                 }
@@ -43,16 +48,11 @@ export class MenuComponent implements OnInit {
 
     onClose() {
         this.state = 'hidden';
+        this.isActive = false;
     }
 
     onClick(event) {
-        console.log(event.target);
-        console.log(event.target.class);
-        if (!this._eref.nativeElement.contains(event.target) &&
-         event.target.id.indexOf('show-menu-group') === -1 &&
-         event.target.id.indexOf('icon-show-menu-bars') === -1
-         && event.target.id.indexOf('icon-show-menu') === -1
-         && event.target.id.indexOf('button-add-task') === -1) {
+        if (!this._eref.nativeElement.contains(event.target) && this.isActivatedNow === false ) {
             if(this.state === 'show') {
                 this.state = 'hidden';
             }

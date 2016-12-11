@@ -14,7 +14,7 @@
         <hr>
         <div *ngFor="let dropdown of dropdowns">
              <hr *ngIf="dropdown.separator">
-            <li (click)="dropdown.onClick()">{{dropdown.name}}</li>
+            <li (click)="dropdown.onClick(); closeDropdown()">{{dropdown.name}}</li>
         </div>
     </ul>
 </div>

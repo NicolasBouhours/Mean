@@ -5,7 +5,7 @@
           <input class="group-name" (change)="onChangeName()" type="text" formControlName="name">
       </div>
       <a class="card-header-icon">
-        <app-dropdown [dropdowns]="dropdownActions"></app-dropdown>
+        <app-dropdown [dropdowns]="dropdownActions" [group]="group"></app-dropdown>
       </a>
     </header>
     <div class="card-content">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a id="button-add-task" class="button-add-task" [routerLink]="['./','add-card']" (click)="onOpenMenu()"> Ajouter une carte ... </a>     
+      <a id="button-add-task" class="button-add-task" (click)="onOpenMenu()"> Ajouter une carte ... </a>     
     </footer>
   </form>
 </div>

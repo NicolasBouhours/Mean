@@ -1,3 +1,4 @@
+import { Group } from './../models/group.model';
 import { DropdownItem } from './dropdown-item.model';
 import { Component, Input, ElementRef } from '@angular/core';
 
@@ -11,6 +12,7 @@ import { Component, Input, ElementRef } from '@angular/core';
 })
 export class DropdownComponent {
     @Input() dropdowns: DropdownItem[] = [];
+    @Input() group: Group;
     isActive = false;
 
     constructor(private _eref: ElementRef) { }

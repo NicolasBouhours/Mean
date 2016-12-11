@@ -4,8 +4,8 @@ import { NotificationService } from './../../../shared/notification/notification
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Group } from './../../../shared/models/group.model';
 import { GroupService } from './../../../shared/services/group.service';
-import { Router } from '@angular/router';
-import { Component, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-group-item',
@@ -16,7 +16,7 @@ export class GroupItemComponent implements OnInit {
   @Input() group: Group;
   myForm: FormGroup;
   dropdownActions: DropdownItem[] = [
-    new DropdownItem('Ajouter une carte', false ),
+    new DropdownItem('Ajouter une carte', false, this.onOpenMenu.bind(this)),
     new DropdownItem('Copier la liste', false),
     new DropdownItem('Déplacer la liste', false),
     new DropdownItem('S\'abonner', false),
@@ -27,6 +27,7 @@ export class GroupItemComponent implements OnInit {
 
   constructor(private groupService: GroupService,
       private router: Router,
+      private route: ActivatedRoute,
       private notificationService: NotificationService,
       private menuService: MenuService) {
   }
@@ -35,7 +36,7 @@ export class GroupItemComponent implements OnInit {
         this.myForm = new FormGroup({
             name: new FormControl(this.group.name, Validators.required)
         });
-    }
+      }
 
     onChangeName() {
       if (this.myForm.valid) {
@@ -46,6 +47,7 @@ export class GroupItemComponent implements OnInit {
 
     onOpenMenu() {
       this.menuService.menuGroup = this.group;
+      this.router.navigate(['./add-card'],  {relativeTo: this.route});
       this.menuService.menuEvent.emit(true);
     }
 
