@@ -1,4 +1,4 @@
-import { MenuService } from './menu/menu.service';
+import { MenuService } from './shared/services/menu.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { JwtService } from './shared/services/jwt.service';
 import { ApiService } from './shared/services/api.service';

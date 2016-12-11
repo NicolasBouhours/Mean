@@ -1,3 +1,4 @@
+import { MenuService } from './../../../shared/services/menu.service';
 import { DropdownItem } from './../../../shared/dropdown/dropdown-item.model';
 import { NotificationService } from './../../../shared/notification/notification.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
@@ -26,7 +27,8 @@ export class GroupItemComponent implements OnInit {
 
   constructor(private groupService: GroupService,
       private router: Router,
-      private notificationService: NotificationService) {
+      private notificationService: NotificationService,
+      private menuService: MenuService) {
   }
 
     ngOnInit() {
@@ -42,7 +44,9 @@ export class GroupItemComponent implements OnInit {
       }
     }
 
-    onOpenModalTask() {
-      console.log('opn modal task');
+    onOpenMenu() {
+      this.menuService.menuGroup = this.group;
+      this.menuService.menuEvent.emit(true);
     }
+
 }

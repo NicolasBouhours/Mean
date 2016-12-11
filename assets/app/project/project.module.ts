@@ -26,8 +26,6 @@ import { ProjectConfirmDeleteComponent } from './project-confirm-delete/project-
     GroupItemComponent,
   
     MenuComponent,
-    MenuTitleComponent,
-    MenuSettingComponent,
     DropdownComponent
   ],
   imports: [

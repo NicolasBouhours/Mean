@@ -1,0 +1,13 @@
+#menu-users-list {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#menu-users-list .tag {
+    margin: 2px;
+}
+
+#menu-users-add-button a {
+    width: 100%;
+    margin: 4px;
+}

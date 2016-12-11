@@ -1,8 +1,9 @@
-import { MenuService } from './../../menu/menu.service';
+import { MenuService } from './../../shared/services/menu.service';
+
 import { Group } from './../../shared/models/group.model';
 import { GroupService } from './../../shared/services/group.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from './../../shared/models/project.model';
 import { ProjectService } from './../../shared/services/project.service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -19,7 +20,9 @@ export class ProjectDetailComponent implements OnInit {
 
   constructor(private projectService: ProjectService,
     private groupService: GroupService,
-    private menuService: MenuService) {}
+    private menuService: MenuService,
+    private router: Router,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.project = this.projectService.getSelectedProject();
@@ -38,6 +41,7 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   onOpenMenu() {
+    this.router.navigate(['./setting'],  {relativeTo: this.route});
     this.menuService.menuEvent.emit(true);
   }
 

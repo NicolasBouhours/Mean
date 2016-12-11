@@ -9,6 +9,7 @@ const PROJECT_ROUTES = [
         path: ':id', 
         CanActivate: [AuthGuard], 
         component: ProjectDetailComponent ,
+        loadChildren: './../menu/menu.module#MenuModule',
         resolve: {
             project: ProjectResolver
         }

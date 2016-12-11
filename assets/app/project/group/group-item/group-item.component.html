@@ -15,7 +15,7 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a class="button-add-task" (click)="onOpenModalTask()"> Ajouter une carte ... </a>     
+      <a id="button-add-task" class="button-add-task" [routerLink]="['./','add-card']" (click)="onOpenMenu()"> Ajouter une carte ... </a>     
     </footer>
   </form>
 </div>
